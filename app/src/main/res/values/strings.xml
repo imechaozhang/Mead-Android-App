@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">MobileMedicine Prototype</string>
+
+    <!--activity_main.xml strings-->
+    <string name="welcome_header">@string/app_name</string>
+    <string name="start_diagnosis_button">Start Diagnosis</string>
+    <string name="retrieve_patient_info_button">Query Patient Info</string>
+    <string name="outbreak_check_button">Check for Outbreaks</string>
+    <string name="permissions_warning_title">SMS Permissions Warning</string>
+    <string name="permissions_warning_message">In order to use mobile medicine (SMS Version) you need
+        to enable SMS permissions with this app. Until you have set the permissions, you will not have access to the app</string>
+    <string name="button_close">close</string>
+
+    <!--activity_patient_info.xml option-->
+    <string name="health_id_header">Enter the patient\'s ID number</string>
+    <string name="sex_option_header">Pick the patient\'s sex</string>
+    <string name="male_option">M</string>
+    <string name="female_option">F</string>
+    <string name="height_header">Put the patient\'s height in the field below (Meters)</string>
+    <string name="weight_header">Put the patient\'s weight in the field below (Kilograms)</string>
+    <string name="age_field_header">Put the age of your patient below</string>
+    <string name="age_field_hint">Age</string>
+    <string name="docpat_location">Are you with the patient right now?</string>
+    <string name="initial_symptom_header">Put the symptoms of your patient below</string>
+    <string name="initial_symptom_hint">headache, cough, backpain, etc</string>
+    <string name="next_button">Next Step: Iterative Diagnosis</string>
+    <string name="warning_title">Information Warning</string>
+    <string name="warning_message">Information is missing from the patient information. The app won\'t be able to make the best diagnosis without it</string>
+
+    <!--activity_list_symptoms.xml options-->
+    <string name="diagnose_button">Diagnose</string>
+    <string name="add_symptom_button">Add Symptom</string>
+    <string name="symptom_list_header">Patient\'s Current Symptoms</string>
+    <string name="remove_symptom_button">DELETE</string>
+
+    <!--activity_diagnosis_process.xml options-->
+    <string name="diagnosis_results_header">Diagnosis Results</string>
+    <string name="continue_button">CONTINUE</string>
+    <string name="all_wrong_alternative">All of the above are incorrect diagnoses - I have a better one</string>
+    <string name="all_wrong_continue">All of the above are incorrect but I still need a diagnosis</string>
+
+    <!--activity_confirmation_screen.xml options-->
+    <string name="diagnosis_summary_header">Diagnosis Summary</string>
+    <string name="final_confirmation_button">Confirm And Restart</string>
+    <string name="input_id_header">Patient\'s ID number</string>
+    <string name="input_sex_header">Patient\'s Sex</string>
+    <string name="input_height_header">Patient\'s Height</string>
+    <string name="input_weight_header">Patient\'s Weight</string>
+    <string name="input_symptoms">Patient\'s Symptoms</string>
+    <string name="input_diagnosed_disease">Diagnosed Disease</string>
+
+    <!--activity_web_preview.xml options-->
+    <string name="back">Go Back To Selection</string>
+    <string name="confirm_and_send">Send Diagnosis Information to Server</string>
+
+    <!--activity_information_sent.xml options-->
+    <string name="confirm_information_sent">Information successfully sent to the server</string>
+
+    <!--data posting-->
+    <string name="google_form_url">https://docs.google.com/forms/d/e/1FAIpQLSe3Vuyr0WWWlc2MIKAq_aw8uYeQCdqg2dV_4B7TgcP5Aw2wpg/formResponse</string>
+    <string name="recordField">entry.519325928</string>
+    <string name="feedbackField">entry.1481931525</string>
+
+
+</resources>

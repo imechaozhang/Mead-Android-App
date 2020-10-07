@@ -15,7 +15,11 @@ public interface PatientInfoDao {
     @Query("SELECT * from patient_table ORDER BY ID ASC")
     List<PatientInfo> getAll();
 
-    @Query("SELECT * from patient_table WHERE ID = id ORDER BY ID ASC")
-    List<PatientInfo> getById(int id);
+    @Query("SELECT * from patient_table WHERE ID LIKE :id ORDER BY ID ASC")
+    List<PatientInfo> getById(String id);
+
+    @Query("SELECT * from patient_table WHERE name LIKE :patient_name ORDER BY ID ASC")
+    List<PatientInfo> getByName(String patient_name);
+
 
 }

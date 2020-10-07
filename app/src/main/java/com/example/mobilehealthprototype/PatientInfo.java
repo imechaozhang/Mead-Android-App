@@ -24,6 +24,9 @@ public class PatientInfo {
     @ColumnInfo(name = "symptoms")
     public String symptoms; //symptom1, symptom2...
 
+    @ColumnInfo(name = "lab_test")
+    public  String lab_test;
+
     @NonNull
     @ColumnInfo(name = "diagnosis")
     public String diagnosis; //disease

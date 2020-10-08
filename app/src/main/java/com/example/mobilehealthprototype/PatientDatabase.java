@@ -2,9 +2,11 @@ package com.example.mobilehealthprototype;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -22,11 +24,41 @@ public abstract class PatientDatabase extends RoomDatabase {
             synchronized (PatientDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            PatientDatabase.class, "word_database")
+                            PatientDatabase.class, "patient_database")
+                            .addCallback(sRoomDatabaseCallback)
                             .build();
                 }
             }
         }
         return INSTANCE;
     }
+
+    /**
+     * Override the onOpen method to populate the database.
+     * For this sample, we clear the database every time it is created or opened.
+     *
+     * If you want to populate the database only when the database is created for the 1st time,
+     * override RoomDatabase.Callback()#onCreate
+     */
+    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+        @Override
+        public void onOpen(@NonNull SupportSQLiteDatabase db) {
+            super.onOpen(db);
+
+            // If you want to keep data through app restarts,
+            // comment out the following block
+            databaseWriteExecutor.execute(() -> {
+                // Populate the database in the background.
+                // If you want to start with more words, just add them.
+                PatientInfoDao dao = INSTANCE.PatientInfoDao();
+                dao.deleteAll();
+
+                PatientInfo patient_info = new PatientInfo();
+                patient_info.id = "000";
+                patient_info.name = "xxx";
+
+                dao.insert(patient_info);
+            });
+        }
+    };
 }

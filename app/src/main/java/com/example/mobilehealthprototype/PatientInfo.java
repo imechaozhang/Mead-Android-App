@@ -8,8 +8,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "patient_table")
 public class PatientInfo {
 
-    @PrimaryKey
-    @NonNull
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "autoID")
     public int autoid;
 
@@ -27,7 +26,6 @@ public class PatientInfo {
     @ColumnInfo(name = "lab_test")
     public  String lab_test;
 
-    @NonNull
     @ColumnInfo(name = "diagnosis")
     public String diagnosis; //disease
 

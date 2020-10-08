@@ -35,7 +35,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/app_title" />
 
-    <!-- <Button
+    <Button
          android:id="@+id/queryButton"
          android:layout_width="380dp"
          android:layout_height="49dp"
@@ -46,9 +46,9 @@
          app:layout_constraintEnd_toEndOf="@+id/outbreakButton"
          app:layout_constraintHorizontal_bias="0.5"
          app:layout_constraintStart_toStartOf="@+id/outbreakButton"
-         app:layout_constraintTop_toBottomOf="@+id/diagnosisButt/>
+         app:layout_constraintTop_toBottomOf="@+id/diagnosisButton"/>
 
-    <!- <Button
+    <Button
          android:id="@+id/outbreakButton"
          android:layout_width="380dp"
          android:layout_height="49dp"
@@ -60,5 +60,4 @@
          app:layout_constraintHorizontal_bias="0.5"
          app:layout_constraintStart_toStartOf="parent"
          app:layout_constraintTop_toBottomOf="@+id/queryButton" />
- -->
 </androidx.constraintlayout.widget.ConstraintLayout>

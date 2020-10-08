@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-  /*      //TODO Actually configure a Query activity once the server is done being set up
+
         Button query_pinfo = findViewById(R.id.queryButton);
         if(!query_enabled){
             query_pinfo.setEnabled(query_enabled);
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-        //TODO Actually configure this "OUTBREAK" button & activities
+ /*        //TODO Actually configure this "OUTBREAK" button & activities
         Button outbreak = findViewById(R.id.outbreakButton);
         if(!outbreak_enabled){
             //TODO: delete line below once we're ready to create an outbreak tracking activity

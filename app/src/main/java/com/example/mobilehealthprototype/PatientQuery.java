@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -34,18 +37,18 @@ public class PatientQuery extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable final List<PatientInfo> patients) {
                 // Update the cached copy of the words in the adapter.
-                adapter.setWords(patients);
+                adapter.setvalue(patients);
             }
         });
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, NewWordActivity.class);
-                startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
-            }
-        });
+        //FloatingActionButton fab = findViewById(R.id.fab);
+        //fab.setOnClickListener(new View.OnClickListener() {
+        //    @Override
+        //    public void onClick(View view) {
+        //        Intent intent = new Intent(MainActivity.this, NewWordActivity.class);
+        //        startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
+        //    }
+        //});
 
     }
 }

@@ -44,7 +44,7 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
     }
 
     void setvalue(List<PatientInfo> patients){
-        mWords = patients;
+        patientInfo = patients;
         notifyDataSetChanged();
     }
 

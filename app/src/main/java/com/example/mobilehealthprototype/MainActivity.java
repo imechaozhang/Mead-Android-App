@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_CODE = 1;
     boolean diagnose_enable = true;
     boolean outbreak_enabled = false;
-    boolean query_enabled = false;
+    boolean query_enabled = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -41,6 +41,8 @@ public class PatientQuery extends AppCompatActivity {
             }
         });
 
+        System.out.println(patientViewModel);
+
         //FloatingActionButton fab = findViewById(R.id.fab);
         //fab.setOnClickListener(new View.OnClickListener() {
         //    @Override

@@ -17,7 +17,7 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
 
         private PatientViewHolder(View itemView) {
             super(itemView);
-            patientItemView = itemView.findViewById(R.id.textView);
+            patientItemView = itemView.findViewById(R.id.databaseView);
         }
     }
 
@@ -43,10 +43,10 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
         }
     }
 
-    //void setWords(List<Word> words){
-    //    mWords = words;
-    //    notifyDataSetChanged();
-    //}
+    void setvalue(List<PatientInfo> patients){
+        mWords = patients;
+        notifyDataSetChanged();
+    }
 
     // getItemCount() is called many times, and when it is first called,
     // mWords has not been updated (means initially, it's null, and we can't return null).

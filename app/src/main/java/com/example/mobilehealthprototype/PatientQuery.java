@@ -2,6 +2,7 @@ package com.example.mobilehealthprototype;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,8 +41,10 @@ public class PatientQuery extends AppCompatActivity {
                 adapter.setvalue(patients);
             }
         });
-
+        System.out.println("patientViewModel:");
         System.out.println(patientViewModel);
+        LiveData<List<PatientInfo>> allPatients = patientViewModel.getAllPatients();
+        System.out.println(allPatients);
 
         //FloatingActionButton fab = findViewById(R.id.fab);
         //fab.setOnClickListener(new View.OnClickListener() {

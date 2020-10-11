@@ -410,7 +410,6 @@ public class DiagnosisResult extends AppCompatActivity {
     //This causes a decent amount of app slowdown - the screen also go black from how heavy
     // the processing takes
     //but checks if the validated matrix is close to the file
-    //TODO: Maybe delete - not likely to use this during run time
     public boolean validateMatrix(String fname, float[][] sub_matrix){
         String nl;
         String[] temp;

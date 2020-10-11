@@ -56,6 +56,8 @@ public class ConfirmationScreen extends AppCompatActivity {
     Hashtable<String, String> DisToUmls = new Hashtable<String, String>();
     Hashtable<String,String> UmlsToDis = new Hashtable<String,String>();
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -56,7 +56,10 @@ public abstract class PatientDatabase extends RoomDatabase {
                 PatientInfo patient_info = new PatientInfo();
                 patient_info.id = "exampleId";
                 patient_info.name = "exampleName";
+                dao.insert(patient_info);
 
+                patient_info.id = "exampleId2";
+                patient_info.name = "exampleName2";
                 dao.insert(patient_info);
             });
         }

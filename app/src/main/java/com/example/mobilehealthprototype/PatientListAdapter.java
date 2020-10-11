@@ -36,7 +36,7 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
     public void onBindViewHolder(PatientViewHolder holder, int position) {
         if (patientInfo != null) {
             PatientInfo current = patientInfo.get(position);
-            holder.patientItemView.setText(current.id + current.name);
+            holder.patientItemView.setText(current.id + " " + current.name);
         } else {
             // Covers the case of data not being ready yet.
             holder.patientItemView.setText("Not found");

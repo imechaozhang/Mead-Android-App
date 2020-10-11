@@ -38,23 +38,39 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         tools:listitem="@layout/recyclerview_item"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/confirmQuery"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/databaseView" />
 
     <Button
         android:id="@+id/confirmQuery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="142dp"
+        android:layout_height="46dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/next_button"
         android:text="@string/continue_button"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/patient_query_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/patient_query_layout"
+        app:layout_constraintVertical_bias="0.93" />
+
+    <Button
+        android:id="@+id/confirmQuery3"
+        android:layout_width="142dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/next_button"
+        android:text="@string/continue_button"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/patient_query_layout"
+        app:layout_constraintVertical_bias="0.93" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

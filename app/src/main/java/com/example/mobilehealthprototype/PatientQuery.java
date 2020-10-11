@@ -44,7 +44,7 @@ public class PatientQuery extends AppCompatActivity {
         System.out.println("patientViewModel:");
         System.out.println(patientViewModel);
         LiveData<List<PatientInfo>> allPatients = patientViewModel.getAllPatients();
-        System.out.println(allPatients);
+        System.out.println(allPatients.getValue());
 
         //FloatingActionButton fab = findViewById(R.id.fab);
         //fab.setOnClickListener(new View.OnClickListener() {

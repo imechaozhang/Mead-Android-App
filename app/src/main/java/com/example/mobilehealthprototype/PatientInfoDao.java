@@ -14,7 +14,7 @@ public interface PatientInfoDao {
     void insert(PatientInfo patientInfo);
 
     @Query("SELECT * from patient_table ORDER BY ID ASC")
-    LiveData<List<PatientInfo>> getAll();
+    List<PatientInfo> getAll();
 
     @Query("SELECT * from patient_table WHERE ID LIKE :id ORDER BY ID ASC")
     LiveData<List<PatientInfo>> getById(String id);

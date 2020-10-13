@@ -38,6 +38,8 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         tools:listitem="@layout/recyclerview_item"
+        android:padding="8dp"
+        android:textSize = "12sp"
         app:layout_constraintBottom_toTopOf="@+id/confirmQuery"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -45,7 +47,7 @@
 
     <Button
         android:id="@+id/confirmQuery"
-        android:layout_width="142dp"
+        android:layout_width="100dp"
         android:layout_height="46dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/next_button"
@@ -59,12 +61,12 @@
         app:layout_constraintVertical_bias="0.93" />
 
     <Button
-        android:id="@+id/confirmQuery3"
-        android:layout_width="142dp"
+        android:id="@+id/query_next_page"
+        android:layout_width="100dp"
         android:layout_height="46dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/next_button"
-        android:text="@string/continue_button"
+        android:text="next page"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

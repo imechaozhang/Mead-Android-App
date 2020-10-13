@@ -8,7 +8,7 @@ import java.util.List;
 
 public class PatientInfoRepo {
     private PatientInfoDao patient_dao;
-    private LiveData<List<PatientInfo>> patient_list;
+    private List<PatientInfo> patient_list;
 
 
     PatientInfoRepo(Application application) {
@@ -19,7 +19,7 @@ public class PatientInfoRepo {
 
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
-    LiveData<List<PatientInfo>> getAllPatients() {
+    List<PatientInfo> getAllPatients() {
         return patient_list;
     }
 

@@ -18,12 +18,14 @@ import com.ajithvgiri.searchdialog.SearchListItem;
 import com.ajithvgiri.searchdialog.SearchableDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PatientQuery extends AppCompatActivity {
 
     SearchableDialog sd;
     List<PatientInfo> patientList;
+    List<SearchListItem> allPatients = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,7 @@ public class PatientQuery extends AppCompatActivity {
 
     public void setUpInterface(){
         //Setting up the search view to look up symptoms
-        sd = new SearchableDialog(ListSymptoms.this, allSymptoms,"Symptom Search");
+        sd = new SearchableDialog(PatientQuery.this, allPatients,"Patient Search");
         sd.setOnItemSelected(new OnSearchItemSelected(){
             public void onClick(int position, SearchListItem searchListItem){
                 String newSmp = searchListItem.getTitle();

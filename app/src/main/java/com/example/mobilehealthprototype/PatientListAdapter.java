@@ -17,7 +17,7 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
 
         private PatientViewHolder(View itemView) {
             super(itemView);
-            patientItemView = itemView.findViewById(R.id.databaseView);
+            patientItemView = itemView.findViewById(R.id.patient_list);
         }
     }
 

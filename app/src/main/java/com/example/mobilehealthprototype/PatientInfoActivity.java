@@ -23,9 +23,6 @@ public class PatientInfoActivity extends AppCompatActivity {
     float p_weight, p_height;
     boolean complete = false;
 
-//    TODO - Sex Age - mandatory
-//    TODO - Height, Weight, ID - Optional
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +109,6 @@ public class PatientInfoActivity extends AppCompatActivity {
                     intent.putExtra("weight", p_weight);
                     startActivity(intent);
                 }
-                //TODO:removed alertdialog because Pedro thinks its bad design (will comment in case people need it for future implementations)
                 // else{
                 //AlertDialog.Builder wn = buildWarning(R.string.warning_title, R.string.warning_message, R.string.close);
                 //wn.show();

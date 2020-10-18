@@ -51,6 +51,7 @@ public class ListSymptoms extends AppCompatActivity {
     Sex p_sex;
     int p_id, p_age;
     float p_height, p_weight;
+    PatientInfo patient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +67,13 @@ public class ListSymptoms extends AppCompatActivity {
 
     public void handlePassedIntent(){
         passedIntent = getIntent();
-        p_sex = (Sex) passedIntent.getSerializableExtra("sex");
-        p_id = passedIntent.getIntExtra("hid", -1);
-        p_age = passedIntent.getIntExtra("age", -1);
-        p_height = passedIntent.getFloatExtra("height",-1);
-        p_weight = passedIntent.getFloatExtra("weight",-1);
+        patient = (PatientInfo) passedIntent.getSerializableExtra("patient");
+        //p_sex = (Sex) passedIntent.getSerializableExtra("sex");
+        //p_id = passedIntent.getIntExtra("hid", -1);
+        //p_age = passedIntent.getIntExtra("age", -1);
+        //p_height = passedIntent.getFloatExtra("height",-1);
+        //p_weight = passedIntent.getFloatExtra("weight",-1);
+
     }
 
     //Loads up all the symptoms from the file into our activity

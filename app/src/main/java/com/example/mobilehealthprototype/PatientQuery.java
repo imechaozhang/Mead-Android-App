@@ -70,8 +70,8 @@ public class PatientQuery extends AppCompatActivity {
                     }
                 }
 
-                Intent intent = new Intent(PatientQuery.this, AdaptiveDiagnosis.class);
-                intent.putExtra("currentPatient", patient);
+                Intent intent = new Intent(PatientQuery.this, Orientation.class);
+                intent.putExtra("patient", patient);
                 startActivity(intent);
             }
         });

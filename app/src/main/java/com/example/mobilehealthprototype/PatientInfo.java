@@ -23,6 +23,12 @@ public class PatientInfo implements Parcelable {
     @ColumnInfo(name = "name")
     public String name;
 
+    @ColumnInfo(name = "height")
+    public String height;
+
+    @ColumnInfo(name = "weight")
+    public String weight;
+
     @ColumnInfo(name = "symptoms")
     public String symptoms; //symptom1, symptom2...
 

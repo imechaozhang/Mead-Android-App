@@ -1,0 +1,166 @@
+,Diseases,Lab_tests
+A00,cholera,<test_name>
+A01,arthritis,<test_name>
+A15,tuberculosis,<test_name>
+A30,leprosy,<test_name>
+A37,pertussis,<test_name>
+A41,sepsis,<test_name>
+A52,syphilis,<test_name>
+A95,yellow fever,<test_name>
+A96,lassa fever,<test_name>
+B05,measles,<test_name>
+B08,exanthema,<test_name>
+B10,human herpesvirus 2,<test_name>
+B15,hepatitis a,<test_name>
+B16,hepatitis b,<test_name>
+B17,hepatitis c,<test_name>
+B20,acquired immuno-deficiency syndrome,<test_name>
+B37,candidiasis,<test_name>
+B4,mycoses,<test_name>
+B54,malaria,<test_name>
+B59,pneumocystis carinii pneumonia,<test_name>
+B73,onchocerciasis,<test_name>
+C19,colorectal carcinoma,<test_name>
+C22,primary carcinoma of the liver cells,<test_name>
+C25,pancreatic carcinoma,<test_name>
+C43,melanoma,<test_name>
+C56,malignant neoplasm of ovary,<test_name>
+C61,prostate carcinoma,<test_name>
+C62,malignant neoplasm of testis,<test_name>
+C79,neoplasm metastasis,<test_name>
+C80,neoplasm,<test_name>
+C85,lymphoma,<test_name>
+D02,lung carcinoma,<test_name>
+D05,breast carcinoma,<test_name>
+D06,cervix carcinoma,<test_name>
+D25,fibroid tumor,<test_name>
+D50,iron deficiency anemia,<test_name>
+D57,sickle cell anemia,<test_name>
+D61,pancytopenia,<test_name>
+D68,hemophilia a,<test_name>
+D69,thrombocytopaenia,<test_name>
+D70,neutropenia,<test_name>
+E00,iodine deficiency syndrome,<test_name>
+E03,hypothyroidism,<test_name>
+E05,thyrotoxicosis,<test_name>
+E1,diabetes mellitus,<test_name>
+E16,hypoglycemia,<test_name>
+E4,protein-energy malnutrition,<test_name>
+E50,vitamin a deficiency,<test_name>
+E55,vitamin d deficiency,<test_name>
+E60,zinc deficiency,<test_name>
+E66,obesity,<test_name>
+E78,hypercholesterolemia,<test_name>
+E80,hyperbilirubinemia,<test_name>
+E83,hypocalcemia,<test_name>
+E86,dehydration,<test_name>
+E87,overload fluid,<test_name>
+F03,dementia,<test_name>
+F1,delirium,<test_name>
+F10,chronic alcoholic intoxication,<test_name>
+F20,schizophrenia,<test_name>
+F22,delusion,<test_name>
+F23,psychotic disorder,<test_name>
+F31,bipolar disorder,<test_name>
+F33,mental depression,<test_name>
+F41,anxiety disorders,<test_name>
+F60,personality disorder,<test_name>
+F84,autistic disorder,<test_name>
+G03,meningitis,<test_name>
+G12,motor neuron disease,<test_name>
+G20,parkinson disease,<test_name>
+G30,alzheimer's disease,<test_name>
+G40,epilepsy,<test_name>
+G43,migraine disorders,<test_name>
+G44,headache disorders,<test_name>
+G45,transient ischemic attack,<test_name>
+G46,accident cerebrovascular,<test_name>
+G60,neuropathy,<test_name>
+G93,encephalopathy,<test_name>
+H02,filarial elephantiases,<test_name>
+H40,glaucoma,<test_name>
+H54,blindness,<test_name>
+H91,presbycusis,<test_name>
+I10,hypertensive disease,<test_name>
+I2,ischemia,<test_name>
+I21,myocardial infarction,<test_name>
+I25,coronary arteriosclerosis,<test_name>
+I26,embolism pulmonary,<test_name>
+I27,hypertension pulmonary,<test_name>
+I31,effusion pericardial,<test_name>
+I33,endocarditis,<test_name>
+I34,mitral valve insufficiency,<test_name>
+I35,stenosis aortic valve,<test_name>
+I36,tricuspid valve insufficiency,<test_name>
+I42,cardiomyopathy,<test_name>
+I49,cardiac arrhythmia,<test_name>
+I51,thrombus,<test_name>
+I61,brain hemorrhage,<test_name>
+I69,hemiparesis,<test_name>
+I73,peripheral vascular disease,<test_name>
+I82,deep vein thrombosis,<test_name>
+I89,lymphatic diseases,<test_name>
+J06,upper respiratory infection,<test_name>
+J11,influenza,<test_name>
+J18,pneumonia,<test_name>
+J20,bronchitis,<test_name>
+J22,lower respiratory tract infection,<test_name>
+J43,emphysema pulmonary,<test_name>
+J44,chronic obstructive airway disease,<test_name>
+J45,asthma,<test_name>
+J69,pneumonia aspiration,<test_name>
+J81,edema pulmonary,<test_name>
+J93,pneumothorax,<test_name>
+J96,respiratory failure,<test_name>
+J98,spasm bronchial,<test_name>
+K21,gastroesophageal reflux disease,<test_name>
+K27,ulcer peptic,<test_name>
+K29,gastritis,<test_name>
+K4,hernia,<test_name>
+K51,colitis,<test_name>
+K52,gastroenteritis,<test_name>
+K56,ileus,<test_name>
+K57,diverticulitis,<test_name>
+K64,hemorrhoids,<test_name>
+K66,adhesion,<test_name>
+K74,cirrhosis,<test_name>
+K80,biliary calculus,<test_name>
+K81,cholecystitis,<test_name>
+K85,pancreatitis,<test_name>
+L03,cellulitis,<test_name>
+L89,decubitus ulcer,<test_name>
+M00,degenerative polyarthritis,<test_name>
+M10,gout,<test_name>
+M54,chronic low back pain,<test_name>
+M81,osteoporosis,<test_name>
+M86,osteomyelitis,<test_name>
+N10,pyelonephritis,<test_name>
+N17,kidney failure acute,<test_name>
+N18,kidney disease,<test_name>
+N39,infection urinary tract,<test_name>
+N40,benign prostatic hypertrophy,<test_name>
+N76,vaginitis,<test_name>
+N80,endometriosis,<test_name>
+N99,chronic kidney failure,<test_name>
+O98,gonorrhea,<test_name>
+P27,chronic disease of respiratory system,<test_name>
+P71,neonatal disorder,<test_name>
+Q02,microcephaly,<test_name>
+Q40,congenital anomaly of gastrointestinal tract,<test_name>
+Q79,congenital musculoskeletal anomalies,<test_name>
+R00,tachycardia sinus,<test_name>
+R06,paroxysmal dyspnea,<test_name>
+R13,deglutition disorder,<test_name>
+R19,diarrheal disorder,<test_name>
+R41,confusion,<test_name>
+R45,affect labile,<test_name>
+R47,aphasia,<test_name>
+R62,failure to thrive,<test_name>
+R73,hyperglycemia,<test_name>
+R78,bacteremia,<test_name>
+R85,human papillomavirus,<test_name>
+T14,suicide attempt,<test_name>
+T48,common cold,<test_name>
+T78,allergic reaction,<test_name>
+Y92,athletic injuries,<test_name>
+I50,failure heart,<test_name>

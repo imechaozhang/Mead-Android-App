@@ -1,0 +1,166 @@
+,Diseases,Drugs
+A00,cholera,<drug_name>
+A01,arthritis,<drug_name>
+A15,tuberculosis,<drug_name>
+A30,leprosy,<drug_name>
+A37,pertussis,<drug_name>
+A41,sepsis,<drug_name>
+A52,syphilis,<drug_name>
+A95,yellow fever,<drug_name>
+A96,lassa fever,<drug_name>
+B05,measles,<drug_name>
+B08,exanthema,<drug_name>
+B10,human herpesvirus 2,<drug_name>
+B15,hepatitis a,<drug_name>
+B16,hepatitis b,<drug_name>
+B17,hepatitis c,<drug_name>
+B20,acquired immuno-deficiency syndrome,<drug_name>
+B37,candidiasis,<drug_name>
+B4,mycoses,<drug_name>
+B54,malaria,<drug_name>
+B59,pneumocystis carinii pneumonia,<drug_name>
+B73,onchocerciasis,<drug_name>
+C19,colorectal carcinoma,<drug_name>
+C22,primary carcinoma of the liver cells,<drug_name>
+C25,pancreatic carcinoma,<drug_name>
+C43,melanoma,<drug_name>
+C56,malignant neoplasm of ovary,<drug_name>
+C61,prostate carcinoma,<drug_name>
+C62,malignant neoplasm of testis,<drug_name>
+C79,neoplasm metastasis,<drug_name>
+C80,neoplasm,<drug_name>
+C85,lymphoma,<drug_name>
+D02,lung carcinoma,<drug_name>
+D05,breast carcinoma,<drug_name>
+D06,cervix carcinoma,<drug_name>
+D25,fibroid tumor,<drug_name>
+D50,iron deficiency anemia,<drug_name>
+D57,sickle cell anemia,<drug_name>
+D61,pancytopenia,<drug_name>
+D68,hemophilia a,<drug_name>
+D69,thrombocytopaenia,<drug_name>
+D70,neutropenia,<drug_name>
+E00,iodine deficiency syndrome,<drug_name>
+E03,hypothyroidism,<drug_name>
+E05,thyrotoxicosis,<drug_name>
+E1,diabetes mellitus,<drug_name>
+E16,hypoglycemia,<drug_name>
+E4,protein-energy malnutrition,<drug_name>
+E50,vitamin a deficiency,<drug_name>
+E55,vitamin d deficiency,<drug_name>
+E60,zinc deficiency,<drug_name>
+E66,obesity,<drug_name>
+E78,hypercholesterolemia,<drug_name>
+E80,hyperbilirubinemia,<drug_name>
+E83,hypocalcemia,<drug_name>
+E86,dehydration,<drug_name>
+E87,overload fluid,<drug_name>
+F03,dementia,<drug_name>
+F1,delirium,<drug_name>
+F10,chronic alcoholic intoxication,<drug_name>
+F20,schizophrenia,<drug_name>
+F22,delusion,<drug_name>
+F23,psychotic disorder,<drug_name>
+F31,bipolar disorder,<drug_name>
+F33,mental depression,<drug_name>
+F41,anxiety disorders,<drug_name>
+F60,personality disorder,<drug_name>
+F84,autistic disorder,<drug_name>
+G03,meningitis,<drug_name>
+G12,motor neuron disease,<drug_name>
+G20,parkinson disease,<drug_name>
+G30,alzheimer's disease,<drug_name>
+G40,epilepsy,<drug_name>
+G43,migraine disorders,<drug_name>
+G44,headache disorders,<drug_name>
+G45,transient ischemic attack,<drug_name>
+G46,accident cerebrovascular,<drug_name>
+G60,neuropathy,<drug_name>
+G93,encephalopathy,<drug_name>
+H02,filarial elephantiases,<drug_name>
+H40,glaucoma,<drug_name>
+H54,blindness,<drug_name>
+H91,presbycusis,<drug_name>
+I10,hypertensive disease,<drug_name>
+I2,ischemia,<drug_name>
+I21,myocardial infarction,<drug_name>
+I25,coronary arteriosclerosis,<drug_name>
+I26,embolism pulmonary,<drug_name>
+I27,hypertension pulmonary,<drug_name>
+I31,effusion pericardial,<drug_name>
+I33,endocarditis,<drug_name>
+I34,mitral valve insufficiency,<drug_name>
+I35,stenosis aortic valve,<drug_name>
+I36,tricuspid valve insufficiency,<drug_name>
+I42,cardiomyopathy,<drug_name>
+I49,cardiac arrhythmia,<drug_name>
+I51,thrombus,<drug_name>
+I61,brain hemorrhage,<drug_name>
+I69,hemiparesis,<drug_name>
+I73,peripheral vascular disease,<drug_name>
+I82,deep vein thrombosis,<drug_name>
+I89,lymphatic diseases,<drug_name>
+J06,upper respiratory infection,<drug_name>
+J11,influenza,<drug_name>
+J18,pneumonia,<drug_name>
+J20,bronchitis,<drug_name>
+J22,lower respiratory tract infection,<drug_name>
+J43,emphysema pulmonary,<drug_name>
+J44,chronic obstructive airway disease,<drug_name>
+J45,asthma,<drug_name>
+J69,pneumonia aspiration,<drug_name>
+J81,edema pulmonary,<drug_name>
+J93,pneumothorax,<drug_name>
+J96,respiratory failure,<drug_name>
+J98,spasm bronchial,<drug_name>
+K21,gastroesophageal reflux disease,<drug_name>
+K27,ulcer peptic,<drug_name>
+K29,gastritis,<drug_name>
+K4,hernia,<drug_name>
+K51,colitis,<drug_name>
+K52,gastroenteritis,<drug_name>
+K56,ileus,<drug_name>
+K57,diverticulitis,<drug_name>
+K64,hemorrhoids,<drug_name>
+K66,adhesion,<drug_name>
+K74,cirrhosis,<drug_name>
+K80,biliary calculus,<drug_name>
+K81,cholecystitis,<drug_name>
+K85,pancreatitis,<drug_name>
+L03,cellulitis,<drug_name>
+L89,decubitus ulcer,<drug_name>
+M00,degenerative polyarthritis,<drug_name>
+M10,gout,<drug_name>
+M54,chronic low back pain,<drug_name>
+M81,osteoporosis,<drug_name>
+M86,osteomyelitis,<drug_name>
+N10,pyelonephritis,<drug_name>
+N17,kidney failure acute,<drug_name>
+N18,kidney disease,<drug_name>
+N39,infection urinary tract,<drug_name>
+N40,benign prostatic hypertrophy,<drug_name>
+N76,vaginitis,<drug_name>
+N80,endometriosis,<drug_name>
+N99,chronic kidney failure,<drug_name>
+O98,gonorrhea,<drug_name>
+P27,chronic disease of respiratory system,<drug_name>
+P71,neonatal disorder,<drug_name>
+Q02,microcephaly,<drug_name>
+Q40,congenital anomaly of gastrointestinal tract,<drug_name>
+Q79,congenital musculoskeletal anomalies,<drug_name>
+R00,tachycardia sinus,<drug_name>
+R06,paroxysmal dyspnea,<drug_name>
+R13,deglutition disorder,<drug_name>
+R19,diarrheal disorder,<drug_name>
+R41,confusion,<drug_name>
+R45,affect labile,<drug_name>
+R47,aphasia,<drug_name>
+R62,failure to thrive,<drug_name>
+R73,hyperglycemia,<drug_name>
+R78,bacteremia,<drug_name>
+R85,human papillomavirus,<drug_name>
+T14,suicide attempt,<drug_name>
+T48,common cold,<drug_name>
+T78,allergic reaction,<drug_name>
+Y92,athletic injuries,<drug_name>
+I50,failure heart,<drug_name>

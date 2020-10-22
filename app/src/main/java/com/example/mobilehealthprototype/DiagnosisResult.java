@@ -27,9 +27,10 @@ import java.util.List;
 
 public class DiagnosisResult extends AppCompatActivity {
     Intent passedIntent;
-    Sex p_sex;
+    String p_sex;
     int p_id, p_age;
     float p_height, p_weight;
+    PatientInfo patient;
 
     int mode;
 
@@ -90,9 +91,10 @@ public class DiagnosisResult extends AppCompatActivity {
 
     public void handlePassedIntent(){
         passedIntent = getIntent();
+        patient = passedIntent.getParcelableExtra("patient");
         mode = passedIntent.getIntExtra("mode", -1);
         if(mode == 1){
-            p_sex = (Sex) passedIntent.getSerializableExtra("sex");
+            p_sex = (String) passedIntent.getSerializableExtra("sex");
             p_id = passedIntent.getIntExtra("hid", -1);
             p_age = passedIntent.getIntExtra("age", -1);
             p_height = passedIntent.getFloatExtra("height",-1);
@@ -109,7 +111,7 @@ public class DiagnosisResult extends AppCompatActivity {
             UmlsToIndex_d = new Hashtable<>((HashMap<String, Integer>) passedIntent.getSerializableExtra("utid"));
 
         }else if(mode == 2){
-            p_sex = (Sex) passedIntent.getSerializableExtra("sex");
+            p_sex = (String) passedIntent.getSerializableExtra("sex");
             p_id = passedIntent.getIntExtra("hid", -1);
             p_age = passedIntent.getIntExtra("age", -1);
             p_height = passedIntent.getFloatExtra("height",-1);
@@ -230,6 +232,7 @@ public class DiagnosisResult extends AppCompatActivity {
                     intent.putExtra("likelihood_of_disease", ddProb);
                     intent.putExtra("diagnosed_UMLS", DisToUmls.get(diagnosedDisease));
                     intent.putExtra("diagnosed_disease_name", diagnosedDisease);
+                    intent.putExtra("patient", patient);
                     System.out.println("Going to comfirmation");
                     startActivity(intent);
                     System.out.println("comfirmation");

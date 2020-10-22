@@ -11,7 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {PatientInfo.class}, version = 1, exportSchema = false)
+@Database(entities = {PatientInfo.class}, version = 2, exportSchema = false)
 public abstract class PatientDatabase extends RoomDatabase {
     public abstract PatientInfoDao PatientInfoDao();
     private static volatile PatientDatabase INSTANCE;
@@ -25,6 +25,7 @@ public abstract class PatientDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             PatientDatabase.class, "patient_database")
+                            .fallbackToDestructiveMigration()
                             .addCallback(sRoomDatabaseCallback)
                             .allowMainThreadQueries()
                             .build();

@@ -1,27 +1,21 @@
 package com.example.mobilehealthprototype;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
 
 public class PatientInfoActivity extends AppCompatActivity {
-    Sex p_sex = null;
-    int p_id, p_age;
+    String p_sex = null;
+    String p_id, p_name;
+    int p_age;
     float p_weight, p_height;
     boolean complete = false;
+    PatientInfo patient = new PatientInfo();
 
 
     @Override
@@ -52,15 +46,15 @@ public class PatientInfoActivity extends AppCompatActivity {
         header.setTextColor(getResources().getColor(R.color.black));
     }
 
-    public float checkValue(int id1, int id2, boolean required){
+    public String checkValue(int id1, int id2, boolean required){
         String parsed = ((TextView) findViewById(id1)).getText().toString();
         if(parsed == null || parsed.trim().equals("")){
             if(required){ warnError(id1, id2); }
-            return -1f;
+            return "-1";
         }else{
             removeError(id1, id2);
         }
-        return Float.parseFloat(parsed);
+        return parsed;
     }
 
     //Function that creates the logic & handling behind UI of the activity
@@ -74,11 +68,11 @@ public class PatientInfoActivity extends AppCompatActivity {
                 switch(view.getId()) {
                     case R.id.Male_option:
                         if (checked)
-                            p_sex = Sex.MALE;
+                            p_sex = "M";
                         break;
                     case R.id.Female_option:
                         if (checked)
-                            p_sex = Sex.FEMALE;
+                            p_sex = "F";
                         break;
                 }
             }
@@ -92,21 +86,24 @@ public class PatientInfoActivity extends AppCompatActivity {
 
         next_step.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                p_id = (int) checkValue(R.id.pid_input, R.id.pid_header, false);
-                p_age = (int) checkValue(R.id.age_input, R.id.age_header, true);
-                p_height = checkValue(R.id.height_input, R.id.height_header, false);
-                p_weight = checkValue(R.id.weight_input, R.id.weight_header, false);
+                p_id = checkValue(R.id.pid_input, R.id.pid_header, false);
+                p_name = checkValue(R.id.pname_input, R.id.pname_header, false);
+                p_age =  Integer.parseInt(checkValue(R.id.age_input, R.id.age_header, false));
+                p_height = Float.parseFloat(checkValue(R.id.height_input, R.id.height_header, false));
+                p_weight = Float.parseFloat(checkValue(R.id.weight_input, R.id.weight_header, false));
                 if(p_sex == null){  warnError(0, R.id.sex_option_header); }
                 complete = (p_age > 0) & (p_sex != null);
                 //(p_id > 0) & (p_age > 0) & (p_sex != null) &(p_height > 0) & (p_weight > 0); //original version
+                patient.id = p_id;
+                patient.birth_year = p_age;
+                patient.name = p_name;
+                patient.height = p_height;
+                patient.weight = p_weight;
+                patient.gender = p_sex;
 
                 if(complete) {
-                    Intent intent = new Intent(PatientInfoActivity.this, ListSymptoms.class);
-                    intent.putExtra("hid", p_id);
-                    intent.putExtra("sex", p_sex);
-                    intent.putExtra("age", p_age);
-                    intent.putExtra("height", p_height);
-                    intent.putExtra("weight", p_weight);
+                    Intent intent = new Intent(PatientInfoActivity.this, Orientation.class);
+                    intent.putExtra("patient", patient);
                     startActivity(intent);
                 }
                 // else{

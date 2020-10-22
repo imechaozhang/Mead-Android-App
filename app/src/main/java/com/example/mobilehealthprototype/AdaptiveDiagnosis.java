@@ -27,9 +27,10 @@ import static java.lang.StrictMath.abs;
 
 public class AdaptiveDiagnosis extends AppCompatActivity {
     Intent passedIntent;
-    Sex p_sex;
+    String p_sex;
     int p_id, p_age;
     float p_height, p_weight;
+    PatientInfo patient;
 
     int mode;
 
@@ -167,8 +168,9 @@ public class AdaptiveDiagnosis extends AppCompatActivity {
 
     public void handlePassedIntent(){
         passedIntent = getIntent();
+        patient = passedIntent.getParcelableExtra("patient");
         mode = passedIntent.getIntExtra("mode", -1);
-        p_sex = (Sex) passedIntent.getSerializableExtra("sex");
+        p_sex = (String) passedIntent.getSerializableExtra("sex");
         p_id = passedIntent.getIntExtra("hid", -1);
         p_age = passedIntent.getIntExtra("age", -1);
         p_height = passedIntent.getFloatExtra("height",-1);
@@ -246,6 +248,7 @@ public class AdaptiveDiagnosis extends AppCompatActivity {
                 intent.putExtra("sl", symptom_list);
                 intent.putExtra("ncols", ncols);
                 intent.putExtra("nrows", nrows);
+                intent.putExtra("patient", patient);
                 startActivity(intent);
             }
         });
@@ -287,6 +290,7 @@ public class AdaptiveDiagnosis extends AppCompatActivity {
                 intent.putExtra("sl", symptom_list);
                 intent.putExtra("ncols", ncols);
                 intent.putExtra("nrows", nrows);
+                intent.putExtra("patient", patient);
                 startActivity(intent);
             }
         });

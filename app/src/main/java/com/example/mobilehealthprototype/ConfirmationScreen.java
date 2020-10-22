@@ -9,6 +9,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.ajithvgiri.searchdialog.SearchListItem;
 import com.squareup.okhttp.MediaType;
@@ -36,9 +41,10 @@ import java.util.List;
 public class ConfirmationScreen extends AppCompatActivity {
     private static final MediaType FORM_DATA_TYPE = MediaType.parse("application/x-www-form-urlencoded; charset=utf-8");
     Intent passedIntent;
-    Sex p_sex;
+    String p_sex;
     int p_id, p_age;
     float p_height, p_weight;
+    PatientInfo patient;
 
     int diagnosed_disease_index;
     String diagnosed_disease;
@@ -67,32 +73,37 @@ public class ConfirmationScreen extends AppCompatActivity {
         String summary = constructConfirmationDetails();
         TextView text = findViewById(R.id.textView5);
         text.setText(summary);
+        PatientViewModel patientViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(PatientViewModel.class);
 
         Button confirmation_button = (Button) findViewById(R.id.final_confirmation);
         confirmation_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println(p_height);
+
                 CommunicationHandler ch = new CommunicationHandler();
-                System.out.println(p_weight);
+
                 ArrayList<Integer> tmp = new ArrayList<Integer>();
-                System.out.println(patientSymptoms.size());
+
                 for(int i = 0; i < patientSymptoms.size(); i++){
                     tmp.add(UmlsToIndex_s.get(SympToUmls.get(patientSymptoms.get(i))));
                     //new Integer(UmlsToIndex.get(SympToUmls.get(patientSymptoms.get(i))))
                 }
-                System.out.println(p_age);
+
 
                 String toSend = ch.generateRawMessage(p_id, p_sex, p_age, p_height, p_weight, tmp, diagnosed_disease_index);
                 // sendMessage deactivated
                 // sendMessage(getString(R.string.server_number),toSend); //Check if this is working later
 
-                //send googleform
+                //save to database
+                patient.symptoms = String.valueOf(patientSymptoms);
+                patient.diagnosis = diagnosed_disease;
+                patientViewModel.insert(patient);
+
+                //send google form
                 PostDataTask postDataTask = new PostDataTask();
 
                 //execute asynctask
                 postDataTask.execute(toSend);
-
 
                 //saveFile(toSend);
                 //readFile();
@@ -144,7 +155,7 @@ public class ConfirmationScreen extends AppCompatActivity {
     public String constructConfirmationDetails(){
         String spid = Integer.toString(p_id);
         String spage = Integer.toString(p_age);
-        String spsex = (p_sex == Sex.MALE) ? "M" : "F";
+        String spsex = (p_sex == "M") ? "M" : "F";
         String spheight = Float.toString(p_height);
         String spweight = Float.toString(p_weight);
 
@@ -161,7 +172,8 @@ public class ConfirmationScreen extends AppCompatActivity {
 
     public void handlePassedIntent(){
         passedIntent = getIntent();
-        p_sex = (Sex) passedIntent.getSerializableExtra("sex");
+        patient = passedIntent.getParcelableExtra("patient");
+        p_sex = (String) passedIntent.getSerializableExtra("sex");
         p_id = passedIntent.getIntExtra("hid", -1);
         p_age = passedIntent.getIntExtra("age", -1);
         p_height = passedIntent.getFloatExtra("height",-1);

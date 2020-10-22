@@ -48,8 +48,9 @@ public class ListSymptoms extends AppCompatActivity {
     int ncols=0, nrows=0;
     float[][] wm;
     Intent passedIntent;
-    Sex p_sex;
-    int p_id, p_age;
+    String p_sex;
+    String p_id;
+    int p_age;
     float p_height, p_weight;
     PatientInfo patient;
 
@@ -58,8 +59,6 @@ public class ListSymptoms extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_symptoms);
         handlePassedIntent();
-        //TODO - Make sure you add to the documentation that the CSV needs to be well behaved
-        //TODO - Well behaved csv = UMLS code to empty field
         //wm = loadFiles("SymptomList.csv", "DiseaseList.csv", "Dis_Sym_30.csv");
         wm = loadFiles("SymptomList_new.csv", "DiseaseList_new.csv", "DiseaseSymptomMatrix_quantitative.csv");
         setUpInterface();
@@ -67,12 +66,17 @@ public class ListSymptoms extends AppCompatActivity {
 
     public void handlePassedIntent(){
         passedIntent = getIntent();
-        patient = (PatientInfo) passedIntent.getSerializableExtra("patient");
+        patient = passedIntent.getParcelableExtra("patient");
         //p_sex = (Sex) passedIntent.getSerializableExtra("sex");
         //p_id = passedIntent.getIntExtra("hid", -1);
         //p_age = passedIntent.getIntExtra("age", -1);
         //p_height = passedIntent.getFloatExtra("height",-1);
         //p_weight = passedIntent.getFloatExtra("weight",-1);
+        p_age = patient.birth_year;
+        p_height = patient.height;
+        p_id = patient.id;
+        p_weight = patient.weight;
+        p_sex = patient.gender;
 
     }
 
@@ -157,7 +161,6 @@ public class ListSymptoms extends AppCompatActivity {
         }
     }
 
-    //TODO - Implement a Synonym-lookup feature
     public void setUpInterface(){
         //Setting up the search view to look up symptoms
         sd = new SearchableDialog(ListSymptoms.this, allSymptoms,"Symptom Search");
@@ -208,6 +211,7 @@ public class ListSymptoms extends AppCompatActivity {
                 intent.putExtra("utis", UmlsToIndex_s);
                 intent.putExtra("ncols", ncols);
                 intent.putExtra("nrows", nrows);
+                intent.putExtra("patient", patient);
                 startActivity(intent);
             }
         });

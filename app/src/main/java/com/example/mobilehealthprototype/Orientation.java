@@ -29,7 +29,14 @@ public class Orientation extends AppCompatActivity{
 
     private void handlePassedIntent() {
         Intent passedIntent = getIntent();
-        patient = (PatientInfo) passedIntent.getSerializableExtra("patient");
+        //patient = (PatientInfo) passedIntent.getSerializableExtra("patient");
+        patient = passedIntent.getParcelableExtra("patient");
+        System.out.println("=============testing parced patient birthyear");
+        System.out.println(patient);
+        System.out.println(patient.autoid);
+        System.out.println(patient.birth_year);
+        System.out.println("=============testing parced patient birthyear");
+
     }
 
     private void setUpInterface() {
@@ -42,16 +49,16 @@ public class Orientation extends AppCompatActivity{
                 startActivity(intent);
             }
         });
-
+/*
         Button recordingButton = (Button) findViewById(R.id.recordingButton);
-        adaptiveButton.setOnClickListener(new View.OnClickListener() {
+        recordingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Orientation.this, RecordSymptoms.class);
                 intent.putExtra("patient", patient);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 
 }

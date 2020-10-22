@@ -6,10 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".PatientInfoActivity">
 
+    <EditText
+        android:id="@+id/pname_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:inputType="text"
+        android:singleLine="true"
+        app:layout_constraintBottom_toTopOf="@+id/sex_option_header"
+        app:layout_constraintEnd_toEndOf="@+id/sex_option_header"
+        app:layout_constraintStart_toStartOf="@+id/sex_option_header"
+        app:layout_constraintTop_toBottomOf="@+id/pid_header" />
+
+    <TextView
+        android:id="@+id/pname_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="Enter the patient's name"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/pname_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pid_input" />
+
     <RadioGroup
         android:id="@+id/sex_input"
-        android:layout_width="100dp"
-        android:layout_height="32dp"
+        android:layout_width="122dp"
+        android:layout_height="18dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:orientation="horizontal"
@@ -152,21 +180,6 @@
         app:layout_constraintTop_toBottomOf="@+id/docpat_location2" />
 
     <TextView
-        android:id="@+id/pid_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="@string/health_id_header"
-        android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/pid_input"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/sex_option_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -179,20 +192,37 @@
         app:layout_constraintBottom_toTopOf="@+id/sex_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pid_input" />
+        app:layout_constraintTop_toBottomOf="@+id/pname_input" />
 
     <EditText
         android:id="@+id/pid_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
         android:ems="10"
-        android:inputType="numberSigned"
+        android:gravity="center_horizontal"
+        android:inputType="text"
         android:singleLine="true"
-        app:layout_constraintBottom_toTopOf="@+id/sex_option_header"
+        app:layout_constraintBottom_toTopOf="@+id/pname_header"
         app:layout_constraintEnd_toEndOf="@+id/sex_option_header"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="@+id/sex_option_header"
         app:layout_constraintTop_toBottomOf="@+id/pid_header" />
+
+    <TextView
+        android:id="@+id/pid_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/health_id_header"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/pid_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

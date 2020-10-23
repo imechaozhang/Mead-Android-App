@@ -27,8 +27,8 @@ import java.util.List;
 
 public class DiagnosisResult extends AppCompatActivity {
     Intent passedIntent;
-    String p_sex;
-    int p_id, p_age;
+    String p_sex, p_id;
+    int p_age;
     float p_height, p_weight;
     PatientInfo patient;
 
@@ -95,7 +95,7 @@ public class DiagnosisResult extends AppCompatActivity {
         mode = passedIntent.getIntExtra("mode", -1);
         if(mode == 1){
             p_sex = (String) passedIntent.getSerializableExtra("sex");
-            p_id = passedIntent.getIntExtra("hid", -1);
+            p_id = passedIntent.getStringExtra("hid");
             p_age = passedIntent.getIntExtra("age", -1);
             p_height = passedIntent.getFloatExtra("height",-1);
             p_weight = passedIntent.getFloatExtra("weight",-1);
@@ -112,7 +112,7 @@ public class DiagnosisResult extends AppCompatActivity {
 
         }else if(mode == 2){
             p_sex = (String) passedIntent.getSerializableExtra("sex");
-            p_id = passedIntent.getIntExtra("hid", -1);
+            p_id = passedIntent.getStringExtra("hid");
             p_age = passedIntent.getIntExtra("age", -1);
             p_height = passedIntent.getFloatExtra("height",-1);
             p_weight = passedIntent.getFloatExtra("weight",-1);
@@ -233,9 +233,7 @@ public class DiagnosisResult extends AppCompatActivity {
                     intent.putExtra("diagnosed_UMLS", DisToUmls.get(diagnosedDisease));
                     intent.putExtra("diagnosed_disease_name", diagnosedDisease);
                     intent.putExtra("patient", patient);
-                    System.out.println("Going to comfirmation");
                     startActivity(intent);
-                    System.out.println("comfirmation");
                 }
             }
         });

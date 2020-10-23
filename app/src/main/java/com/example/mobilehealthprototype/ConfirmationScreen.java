@@ -42,7 +42,8 @@ public class ConfirmationScreen extends AppCompatActivity {
     private static final MediaType FORM_DATA_TYPE = MediaType.parse("application/x-www-form-urlencoded; charset=utf-8");
     Intent passedIntent;
     String p_sex;
-    int p_id, p_age;
+    String p_id;
+    int p_age;
     float p_height, p_weight;
     PatientInfo patient;
 
@@ -153,7 +154,7 @@ public class ConfirmationScreen extends AppCompatActivity {
 
 
     public String constructConfirmationDetails(){
-        String spid = Integer.toString(p_id);
+        String spid = p_id;
         String spage = Integer.toString(p_age);
         String spsex = (p_sex == "M") ? "M" : "F";
         String spheight = Float.toString(p_height);
@@ -174,7 +175,7 @@ public class ConfirmationScreen extends AppCompatActivity {
         passedIntent = getIntent();
         patient = passedIntent.getParcelableExtra("patient");
         p_sex = (String) passedIntent.getSerializableExtra("sex");
-        p_id = passedIntent.getIntExtra("hid", -1);
+        p_id = passedIntent.getStringExtra("hid");
         p_age = passedIntent.getIntExtra("age", -1);
         p_height = passedIntent.getFloatExtra("height",-1);
         p_weight = passedIntent.getFloatExtra("weight",-1);

@@ -29,7 +29,7 @@ public class CommunicationHandler {
         return hashedPID;
     }
 
-    public String generateRawMessage(int p_id, String p_sex, int p_age, float p_height, float p_weight,
+    public String generateRawMessage(String p_id, String p_sex, int p_age, float p_height, float p_weight,
                                      ArrayList<Integer> patientSymptomsIndex, int diagnosedDiseaseIndex){
         //String spsex = (p_sex == Sex.MALE) ? "M" : "F";
         String spsex = p_sex;

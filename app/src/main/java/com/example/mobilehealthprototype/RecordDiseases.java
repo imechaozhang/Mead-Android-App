@@ -23,15 +23,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 
-public class RecordSymptoms extends AppCompatActivity {
+public class RecordDiseases extends AppCompatActivity {
     //important properties for the GUI to load in
     List<SearchListItem> allSymptoms = new ArrayList<>();
+    List<SearchListItem> allDiseases = new ArrayList<>();
     ArrayList<String> patientSymptoms = new ArrayList<>();
-    ListView currentSymptomListView;
-    SymptomAdapter adp;
+    String diagnosis;
+    ListView currentDiseaseListView;
+    DiseaseAdapter adp;
     SearchableDialog sd;
 
     Hashtable<String, String> SympToUmls= new Hashtable<String, String>();
@@ -66,16 +69,23 @@ public class RecordSymptoms extends AppCompatActivity {
     public void handlePassedIntent(){
         passedIntent = getIntent();
         patient = passedIntent.getParcelableExtra("patient");
-        //p_sex = (Sex) passedIntent.getSerializableExtra("sex");
-        //p_id = passedIntent.getIntExtra("hid", -1);
-        //p_age = passedIntent.getIntExtra("age", -1);
-        //p_height = passedIntent.getFloatExtra("height",-1);
-        //p_weight = passedIntent.getFloatExtra("weight",-1);
-        p_age = patient.birth_year;
-        p_height = patient.height;
-        p_id = patient.id;
-        p_weight = patient.weight;
-        p_sex = patient.gender;
+        p_sex = passedIntent.getStringExtra("sex");
+        p_id = passedIntent.getStringExtra("hid");
+        p_age = passedIntent.getIntExtra("age", -1);
+        p_height = passedIntent.getFloatExtra("height",-1);
+        p_weight = passedIntent.getFloatExtra("weight",-1);
+        patientSymptoms = passedIntent.getStringArrayListExtra("patient_symptoms");
+        nrows = passedIntent.getIntExtra("nrows", 0);
+        ncols = passedIntent.getIntExtra("ncols", 0);
+        SympToUmls = new Hashtable<> ((HashMap<String,String>) passedIntent.getSerializableExtra("stu"));
+        UmlsToSymp = new Hashtable<>((HashMap<String,String>) passedIntent.getSerializableExtra("uts"));
+        IndexToUmls_s = new Hashtable<>((HashMap<Integer, String>) passedIntent.getSerializableExtra("itus"));
+        UmlsToIndex_s = new Hashtable<>((HashMap<String, Integer>) passedIntent.getSerializableExtra("utis"));
+
+        DisToUmls = new Hashtable<> ((HashMap<String,String>) passedIntent.getSerializableExtra("dtu"));
+        UmlsToDis = new Hashtable<>((HashMap<String,String>) passedIntent.getSerializableExtra("utd"));
+        IndexToUmls_d = new Hashtable<>((HashMap<Integer, String>) passedIntent.getSerializableExtra("itud"));
+        UmlsToIndex_d = new Hashtable<>((HashMap<String, Integer>) passedIntent.getSerializableExtra("utid"));
 
     }
 
@@ -117,7 +127,7 @@ public class RecordSymptoms extends AppCompatActivity {
                 UmlsToDis.put(temp[0], temp[1]);
                 index++;
                 SearchListItem t = new SearchListItem(0, temp[1]);
-                allSymptoms.add(t);
+                allDiseases.add(t);
             }
             nrows=index;
             reader.close();
@@ -162,14 +172,34 @@ public class RecordSymptoms extends AppCompatActivity {
 
     public void setUpInterface(){
         //Setting up the search view to look up symptoms
-        sd = new SearchableDialog(RecordSymptoms.this, allSymptoms,"Symptom Search");
+        sd = new SearchableDialog(RecordDiseases.this, allDiseases,"Disease Search");
         sd.setOnItemSelected(new OnSearchItemSelected(){
             public void onClick(int position, SearchListItem searchListItem){
-                String newSmp = searchListItem.getTitle();
-                if(!patientSymptoms.contains(newSmp)){
-                    patientSymptoms.add(searchListItem.getTitle());
-                    ((SymptomAdapter) currentSymptomListView.getAdapter()).notifyDataSetChanged();
-                }
+                diagnosis = searchListItem.getTitle();
+                Intent intent = new Intent(RecordDiseases.this, ConfirmationScreen.class);
+                intent.putExtra("hid", p_id);
+                intent.putExtra("sex", p_sex);
+                intent.putExtra("age", p_age);
+                intent.putExtra("height", p_height);
+                intent.putExtra("weight", p_weight);
+                intent.putExtra("patient_symptoms", patientSymptoms);
+                intent.putExtra("diagnosis", diagnosis);
+                intent.putExtra("stu", SympToUmls);
+                intent.putExtra("uts", UmlsToSymp);
+                intent.putExtra("dtu", DisToUmls);
+                intent.putExtra("utd", UmlsToDis);
+                intent.putExtra("itud", IndexToUmls_d);
+                intent.putExtra("itus", IndexToUmls_s);
+                intent.putExtra("utid", UmlsToIndex_d);
+                intent.putExtra("utis", UmlsToIndex_s);
+                intent.putExtra("ncols", ncols);
+                intent.putExtra("nrows", nrows);
+                intent.putExtra("patient", patient);
+                intent.putExtra("diagnosed_disease_index", UmlsToIndex_d.get(DisToUmls.get(diagnosis)));
+                intent.putExtra("likelihood_of_disease", 1);
+                intent.putExtra("diagnosed_UMLS", DisToUmls.get(diagnosis));
+                intent.putExtra("diagnosed_disease_name", diagnosis);
+                startActivity(intent);
             }
         });
 
@@ -182,9 +212,9 @@ public class RecordSymptoms extends AppCompatActivity {
         });
 
         //Sets up the ListView for the patient's current symptoms
-        currentSymptomListView = findViewById(R.id.currentsymptomlist);
-        adp = new SymptomAdapter(this, patientSymptoms);
-        currentSymptomListView.setAdapter(adp);
+        currentDiseaseListView = findViewById(R.id.currentsymptomlist);
+        adp = new DiseaseAdapter(this, patientSymptoms);
+        currentDiseaseListView.setAdapter(adp);
 
         Button diagnose = findViewById(R.id.continue_diagnose_button);
         CustomButton.changeButtonColor(this, diagnose, R.color.colorPrimary,3, R.color.colorAccent);
@@ -192,7 +222,7 @@ public class RecordSymptoms extends AppCompatActivity {
         diagnose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RecordSymptoms.this, RecordDiseases.class);
+                Intent intent = new Intent(RecordDiseases.this, RecordLabs.class);
                 intent.putExtra("hid", p_id);
                 intent.putExtra("sex", p_sex);
                 intent.putExtra("age", p_age);
@@ -215,11 +245,11 @@ public class RecordSymptoms extends AppCompatActivity {
         });
     }
 
-    public class SymptomAdapter extends BaseAdapter implements ListAdapter {
+    public class DiseaseAdapter extends BaseAdapter implements ListAdapter {
         private ArrayList<String> list = new ArrayList<String>();
         private Context context;
 
-        public SymptomAdapter(Context context, ArrayList<String> list) {
+        public DiseaseAdapter(Context context, ArrayList<String> list) {
             this.list = list;
             this.context = context;
         }

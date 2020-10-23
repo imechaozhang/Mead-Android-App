@@ -49,7 +49,7 @@ public class Orientation extends AppCompatActivity{
                 startActivity(intent);
             }
         });
-/*
+
         Button recordingButton = (Button) findViewById(R.id.recordingButton);
         recordingButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +58,7 @@ public class Orientation extends AppCompatActivity{
                 intent.putExtra("patient", patient);
                 startActivity(intent);
             }
-        });*/
+        });
     }
 
 }

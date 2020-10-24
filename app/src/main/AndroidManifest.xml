@@ -20,6 +20,8 @@
         <activity android:name=".DiagnosisResult" />
         <activity android:name=".AdaptiveDiagnosis" />
         <activity android:name=".Orientation" />
+        <activity android:name=".RecordSymptoms" />
+        <activity android:name=".RecordDiseases" />
         <activity
             android:name=".SendMessage"
             android:screenOrientation="portrait" />

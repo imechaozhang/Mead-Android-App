@@ -59,7 +59,7 @@ public class RecordDiseases extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_symptoms);
+        setContentView(R.layout.activity_record_disease);
         handlePassedIntent();
         //wm = loadFiles("SymptomList.csv", "DiseaseList.csv", "Dis_Sym_30.csv");
         wm = loadFiles("SymptomList_new.csv", "DiseaseList_new.csv", "DiseaseSymptomMatrix_quantitative.csv");
@@ -203,20 +203,15 @@ public class RecordDiseases extends AppCompatActivity {
             }
         });
 
-        Button addsymp = findViewById(R.id.add_symptom_button);
-        CustomButton.changeButtonColor(this, addsymp, R.color.colorPrimaryDark,3, R.color.colorPrimaryDarkAccent);
-        addsymp.setOnClickListener(new View.OnClickListener(){
+        Button adddisease = findViewById(R.id.select_disease_button);
+        CustomButton.changeButtonColor(this, adddisease, R.color.colorPrimaryDark,3, R.color.colorPrimaryDarkAccent);
+        adddisease.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
                 sd.show();
             }
         });
 
-        //Sets up the ListView for the patient's current symptoms
-        currentDiseaseListView = findViewById(R.id.currentsymptomlist);
-        adp = new DiseaseAdapter(this, patientSymptoms);
-        currentDiseaseListView.setAdapter(adp);
-
-        Button diagnose = findViewById(R.id.continue_diagnose_button);
+        Button diagnose = findViewById(R.id.record_disease_skip);
         CustomButton.changeButtonColor(this, diagnose, R.color.colorPrimary,3, R.color.colorAccent);
 
         diagnose.setOnClickListener(new View.OnClickListener() {
@@ -240,6 +235,10 @@ public class RecordDiseases extends AppCompatActivity {
                 intent.putExtra("ncols", ncols);
                 intent.putExtra("nrows", nrows);
                 intent.putExtra("patient", patient);
+                intent.putExtra("diagnosed_disease_index", -1);
+                intent.putExtra("likelihood_of_disease", 1);
+                intent.putExtra("diagnosed_UMLS", "null");
+                intent.putExtra("diagnosed_disease_name", "null");
                 startActivity(intent);
             }
         });

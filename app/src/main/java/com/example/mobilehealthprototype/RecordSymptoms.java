@@ -56,7 +56,7 @@ public class RecordSymptoms extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_symptoms);
+        setContentView(R.layout.activity_record_symptoms);
         handlePassedIntent();
         //wm = loadFiles("SymptomList.csv", "DiseaseList.csv", "Dis_Sym_30.csv");
         wm = loadFiles("SymptomList_new.csv", "DiseaseList_new.csv", "DiseaseSymptomMatrix_quantitative.csv");
@@ -173,7 +173,7 @@ public class RecordSymptoms extends AppCompatActivity {
             }
         });
 
-        Button addsymp = findViewById(R.id.add_symptom_button);
+        Button addsymp = findViewById(R.id.add_symptom_record);
         CustomButton.changeButtonColor(this, addsymp, R.color.colorPrimaryDark,3, R.color.colorPrimaryDarkAccent);
         addsymp.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
@@ -182,11 +182,11 @@ public class RecordSymptoms extends AppCompatActivity {
         });
 
         //Sets up the ListView for the patient's current symptoms
-        currentSymptomListView = findViewById(R.id.currentsymptomlist);
+        currentSymptomListView = findViewById(R.id.recordsymptomlist);
         adp = new SymptomAdapter(this, patientSymptoms);
         currentSymptomListView.setAdapter(adp);
 
-        Button diagnose = findViewById(R.id.continue_diagnose_button);
+        Button diagnose = findViewById(R.id.record_diagnose_button);
         CustomButton.changeButtonColor(this, diagnose, R.color.colorPrimary,3, R.color.colorAccent);
 
         diagnose.setOnClickListener(new View.OnClickListener() {

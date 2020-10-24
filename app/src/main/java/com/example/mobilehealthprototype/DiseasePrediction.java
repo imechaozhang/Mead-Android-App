@@ -24,8 +24,8 @@ import java.util.List;
 
 public class DiseasePrediction extends AppCompatActivity {
 
-    String p_sex;
-    int p_id, p_age;
+    String p_sex, p_id;
+    int p_age;
     float p_height, p_weight;
 
     int diagnosed_disease_index;
@@ -238,7 +238,7 @@ public class DiseasePrediction extends AppCompatActivity {
     public void handlePassedIntent(){
         Intent passedIntent = getIntent();
         p_sex = (String) passedIntent.getSerializableExtra("sex");
-        p_id = passedIntent.getIntExtra("hid", -1);
+        p_id = passedIntent.getStringExtra("hid");
         p_age = passedIntent.getIntExtra("age", -1);
         p_height = passedIntent.getFloatExtra("height",-1);
         p_weight = passedIntent.getFloatExtra("weight",-1);

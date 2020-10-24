@@ -91,7 +91,7 @@ public class ConfirmationScreen extends AppCompatActivity {
                 }
 
 
-                String toSend = ch.generateRawMessage(p_id, p_sex, p_age, p_height, p_weight, tmp, diagnosed_disease_index);
+                //String toSend = ch.generateRawMessage(p_id, p_sex, p_age, p_height, p_weight, tmp, diagnosed_disease_index);
                 // sendMessage deactivated
                 // sendMessage(getString(R.string.server_number),toSend); //Check if this is working later
 
@@ -104,7 +104,7 @@ public class ConfirmationScreen extends AppCompatActivity {
                 PostDataTask postDataTask = new PostDataTask();
 
                 //execute asynctask
-                postDataTask.execute(toSend);
+                postDataTask.execute(summary);
 
                 //saveFile(toSend);
                 //readFile();

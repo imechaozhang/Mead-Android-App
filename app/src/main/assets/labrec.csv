@@ -1,0 +1,8 @@
+﻿Disease,Lab test1,Lab test2
+Headache,Complete Blood Count,Urinalysis
+Coronary heart disease,Lipid Panel,
+Flu,Flu test,
+Cold,,
+Urinary tract infection,Urinalysis,
+Hernia,Abdominal ultrasound,CT scan or MRI
+Depression, CT scan or MRI,Electrocardiogram

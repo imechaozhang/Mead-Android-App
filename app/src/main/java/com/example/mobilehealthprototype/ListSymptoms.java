@@ -34,19 +34,28 @@ public class ListSymptoms extends AppCompatActivity {
     ListView currentSymptomListView;
     SymptomAdapter adp;
     SearchableDialog sd;
-
+/*  // old version of hashmaps
     Hashtable<String, String> SympToUmls= new Hashtable<String, String>();
     Hashtable<String, String> UmlsToSymp= new Hashtable<String, String>();
     Hashtable<Integer, String> IndexToUmls_s = new Hashtable<>();
     Hashtable<String, Integer> UmlsToIndex_s = new Hashtable<>();
-
     Hashtable<String, Integer> UmlsToIndex_d = new Hashtable<>();
     Hashtable<Integer, String> IndexToUmls_d = new Hashtable<>();
     Hashtable<String, String> DisToUmls = new Hashtable<>();
     Hashtable<String,String> UmlsToDis = new Hashtable<>();
 
-    int ncols=0, nrows=0;
-    float[][] wm;
+ */
+
+    public Hashtable<String, Integer> DisToIndex = new Hashtable<>();
+    public Hashtable<Integer, String> IndexToDis = new Hashtable<>();
+    public Hashtable<String, Integer> SympToIndex = new Hashtable<>();
+    public Hashtable<Integer,String> IndexToSymp = new Hashtable<>();
+    public Hashtable<String, Integer> LabToIndex = new Hashtable<>();
+    public Hashtable<Integer,String> IndexToLab = new Hashtable<>();
+    public Hashtable<String, Integer> DrugToIndex = new Hashtable<>();
+    public Hashtable<Integer,String> IndexToDrug = new Hashtable<>();
+
+    float[][] wm, lab_dis, drug_dis;
     Intent passedIntent;
     String p_sex;
     String p_id;
@@ -60,7 +69,7 @@ public class ListSymptoms extends AppCompatActivity {
         setContentView(R.layout.activity_list_symptoms);
         handlePassedIntent();
         //wm = loadFiles("SymptomList.csv", "DiseaseList.csv", "Dis_Sym_30.csv");
-        wm = loadFiles("SymptomList_new.csv", "DiseaseList_new.csv", "DiseaseSymptomMatrix_quantitative.csv");
+        loadFiles("wmrec.csv", "labrec.csv", "drugrec.csv");
         setUpInterface();
     }
 
@@ -81,29 +90,192 @@ public class ListSymptoms extends AppCompatActivity {
     }
 
     //Loads up all the symptoms from the file into our activity
-    public float[][] loadFiles(String SymptomList, String DiseaseList, String WeightMatrix){ //ArrayList<String>
-        //Load SymptomList
+    public void loadFiles(String WeightMatrix, String Lab, String Drug){ //ArrayList<String>
+        //Load symptoms and diseases
         try{
-            InputStreamReader is = new InputStreamReader(getAssets().open(SymptomList));
+            InputStreamReader is = new InputStreamReader(getAssets().open(WeightMatrix));
             BufferedReader reader = new BufferedReader(is);
             String nl;
             String[] temp;
-            nl = reader.readLine(); //skips the heading in the csv
             int index = 0;
-            while((nl = reader.readLine()) != null){
-                temp = nl.split(",");
-                SympToUmls.put(temp[1], temp[0]);
-                UmlsToSymp.put(temp[0], temp[1]);
-                index++;
-                SearchListItem t = new SearchListItem(0, temp[1]);
+
+            // first line for symptom list
+            nl = reader.readLine();
+            temp = nl.split(",");
+            int ncols = temp.length-1;
+            for(int sympidx=0; sympidx<ncols; sympidx++){
+                SympToIndex.put(temp[sympidx+1], sympidx);
+                IndexToSymp.put(sympidx, temp[sympidx+1]);
+
+                SearchListItem t = new SearchListItem(sympidx, temp[sympidx+1]);
                 allSymptoms.add(t);
             }
-            ncols=index;
+
+            while((nl = reader.readLine()) != null){
+                temp = nl.split(",");
+                DisToIndex.put(temp[0], index);
+                IndexToDis.put(index, temp[0]);
+                // UMLS codes are temporally abandoned
+                //SympToUmls.put(temp[1], temp[0]);
+                //UmlsToSymp.put(temp[0], temp[1]);
+                index++;
+                //SearchListItem t = new SearchListItem(0, temp[1]);
+                //allSymptoms.add(t);
+            }
+            int nrows = index;
             reader.close();
+
+            float[][] weight_matrix = new float[nrows][ncols];
+
+            is = new InputStreamReader(getAssets().open(WeightMatrix));
+            reader = new BufferedReader(is);
+            nl = reader.readLine(); //skip the first line of the CSV
+
+            for(int r = 0; r < nrows; r++){
+                nl = reader.readLine();
+                temp = nl.split(",");
+                for(int c = 0; c < ncols; c++){
+                    weight_matrix[r][c] = Float.parseFloat(temp[c + 1]);
+                }
+            }
+            reader.close();
+            wm = weight_matrix;
         }catch (IOException e){
             e.printStackTrace();
-            Log.e("ERROR", "AN ERROR HAS OCCURRED IN LOADSYMPTOMS");
+            Log.e("ERROR", "AN ERROR HAS OCCURRED IN LOADFILES(Symptoms)");
         }
+
+        //load lab
+        try{
+            InputStreamReader is = new InputStreamReader(getAssets().open(Lab));
+            BufferedReader reader = new BufferedReader(is);
+            String nl;
+            String[] temp;
+            int index = 0;
+
+            // first line for lab list
+            nl = reader.readLine();
+            temp = nl.split(",");
+            int ncols = temp.length-1;
+            for(int idx=0; idx<ncols; idx++){
+                LabToIndex.put(temp[idx+1], idx);
+                IndexToLab.put(idx, temp[idx+1]);
+            }
+
+            while((nl = reader.readLine()) != null){
+                index++;
+            }
+            int nrows = index;
+            reader.close();
+
+            float[][] lab_matrix = new float[nrows][ncols];
+
+            is = new InputStreamReader(getAssets().open(Lab));
+            reader = new BufferedReader(is);
+            nl = reader.readLine(); //skip the first line of the CSV
+
+            for(int r = 0; r < nrows; r++){
+                nl = reader.readLine();
+                temp = nl.split(",");
+                for(int c = 0; c < ncols; c++){
+                    System.out.println("===========debugging========");
+                    System.out.println(temp.length);
+                    System.out.println(c);
+                    System.out.println("===========debugging========");
+                    if (temp[c + 1].equals("")){
+                        lab_matrix[r][c] = 0;
+                    }
+                    else{
+                        lab_matrix[r][c] = Float.parseFloat(temp[c + 1]);
+                    }
+
+                }
+            }
+            reader.close();
+            lab_dis = lab_matrix;
+        }catch (IOException e){
+            e.printStackTrace();
+            Log.e("ERROR", "AN ERROR HAS OCCURRED IN LOADFILES (Lab)");
+        }
+
+        //load drug
+        try{
+            InputStreamReader is = new InputStreamReader(getAssets().open(Drug));
+            BufferedReader reader = new BufferedReader(is);
+            String nl;
+            String[] temp;
+            int index = 0;
+
+            // first line for lab list
+            nl = reader.readLine();
+            temp = nl.split(",");
+            int ncols = temp.length-1;
+            for(int idx=0; idx<ncols; idx++){
+                DrugToIndex.put(temp[idx+1], idx);
+                IndexToDrug.put(idx, temp[idx+1]);
+            }
+
+            while((nl = reader.readLine()) != null){
+                index++;
+            }
+            int nrows = index;
+            reader.close();
+
+            float[][] drug_matrix = new float[nrows][ncols];
+
+            is = new InputStreamReader(getAssets().open(Drug));
+            reader = new BufferedReader(is);
+            nl = reader.readLine(); //skip the first line of the CSV
+
+            for(int r = 0; r < nrows; r++){
+                nl = reader.readLine();
+                temp = nl.split(",");
+                for(int c = 0; c < ncols; c++){
+                    if (temp[c + 1].equals("")){
+                        drug_matrix[r][c] = 0;
+                    }
+                    else{
+                        drug_matrix[r][c] = Float.parseFloat(temp[c + 1]);
+                    }
+
+                }
+            }
+            reader.close();
+            drug_dis = drug_matrix;
+        }catch (IOException e){
+            e.printStackTrace();
+            Log.e("ERROR", "AN ERROR HAS OCCURRED IN LOADFILES (Drug)");
+        }
+
+
+
+        /*
+        //Load and return WeightMatrix
+        try{
+            String nl;
+            String[] temp = null;
+            float[][] weight_matrix = new float[nrows][ncols];
+
+            InputStreamReader is = new InputStreamReader(getAssets().open(WeightMatrix));
+            BufferedReader reader = new BufferedReader(is);
+            nl = reader.readLine(); //skip the first line of the CSV
+
+            for(int r = 0; r < nrows; r++){
+                nl = reader.readLine();
+                temp = nl.split(",");
+                for(int c = 0; c < ncols; c++){
+                    weight_matrix[r][c] = Float.parseFloat(temp[c + 1]);
+                }
+            }
+            reader.close();
+            return weight_matrix;
+        } catch (IOException e){
+            Log.d("TESTING", "AN ERROR HAS OCCURRED IN LOADFILES");
+            Log.d("TESTING", e.toString());
+            return null;
+        }
+
+
         //Load DiseaseList
         try{
             InputStreamReader is = new InputStreamReader(getAssets().open(DiseaseList));
@@ -159,6 +331,8 @@ public class ListSymptoms extends AppCompatActivity {
             Log.d("TESTING", e.toString());
             return null;
         }
+
+         */
     }
 
     public void setUpInterface(){
@@ -201,17 +375,25 @@ public class ListSymptoms extends AppCompatActivity {
                 intent.putExtra("height", p_height);
                 intent.putExtra("weight", p_weight);
                 intent.putExtra("patient_symptoms", patientSymptoms);
-                intent.putExtra("stu", SympToUmls);
-                intent.putExtra("uts", UmlsToSymp);
-                intent.putExtra("dtu", DisToUmls);
-                intent.putExtra("utd", UmlsToDis);
-                intent.putExtra("itud", IndexToUmls_d);
-                intent.putExtra("itus", IndexToUmls_s);
-                intent.putExtra("utid", UmlsToIndex_d);
-                intent.putExtra("utis", UmlsToIndex_s);
-                intent.putExtra("ncols", ncols);
-                intent.putExtra("nrows", nrows);
+                intent.putExtra("DisToIndex", DisToIndex);
+                intent.putExtra("SympToIndex", SympToIndex);
+                intent.putExtra("LabToIndex", LabToIndex);
+                intent.putExtra("DrugToIndex", DrugToIndex);
+                intent.putExtra("IndexToDis", IndexToDis);
+                intent.putExtra("IndexToSymp", IndexToSymp);
+                intent.putExtra("IndexToLab", IndexToLab);
+                intent.putExtra("IndexToDrug", IndexToDrug);
                 intent.putExtra("patient", patient);
+                //intent.putExtra("stu", SympToUmls);
+                //intent.putExtra("uts", UmlsToSymp);
+                //intent.putExtra("dtu", DisToUmls);
+                //intent.putExtra("utd", UmlsToDis);
+                //intent.putExtra("itud", IndexToUmls_d);
+                //intent.putExtra("itus", IndexToUmls_s);
+                //intent.putExtra("utid", UmlsToIndex_d);
+                //intent.putExtra("utis", UmlsToIndex_s);
+                //intent.putExtra("ncols", ncols);
+                //intent.putExtra("nrows", nrows);
                 startActivity(intent);
             }
         });

@@ -4,8 +4,13 @@ public class DiseaseProb implements Comparable<DiseaseProb>{
     String umls, dname;
     float prob;
 
-    public DiseaseProb(String umls, String dname, float prob){
-        this.umls = umls;
+    //public DiseaseProb(String umls, String dname, float prob){
+    //    this.umls = umls;
+    //    this.dname = dname;
+    //    this.prob = prob;
+    //}
+
+    public DiseaseProb(String dname, float prob){
         this.dname = dname;
         this.prob = prob;
     }

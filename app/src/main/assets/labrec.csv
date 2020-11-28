@@ -1,8 +1,8 @@
-﻿Disease,Lab test1,Lab test2
-Headache,Complete Blood Count,Urinalysis
-Coronary heart disease,Lipid Panel,
-Flu,Flu test,
-Cold,,
-Urinary tract infection,Urinalysis,
-Hernia,Abdominal ultrasound,CT scan or MRI
-Depression, CT scan or MRI,Electrocardiogram
+﻿,Complete Blood Count,Urinalysis,Lipid Panel,Flu test,Abdominal ultrasound,CT scan or MRI,Electrocardiogram
+Headache,1,1,,,,,
+Coronary heart disease,,,1,,,,
+Flu,,,,1,,,
+Cold,,,,,,,
+Urinary tract infection,,1,,,,,
+Hernia,,,,,1,1,
+Depression,,,,,,1,1

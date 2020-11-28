@@ -37,14 +37,26 @@ public class DiagnosisResult extends AppCompatActivity {
     List<SearchListItem> allDiseases = new ArrayList<>();
     ArrayList<String> patientSymptoms;
 
+    /*  // old version of hashmaps
     Hashtable<String, String> SympToUmls= new Hashtable<String, String>();
     Hashtable<String, String> UmlsToSymp= new Hashtable<String, String>();
-    Hashtable<Integer, String> IndexToUmls_s = new Hashtable<Integer, String>();
-    Hashtable<String, Integer> UmlsToIndex_s = new Hashtable<String, Integer>();
-    Hashtable<String, Integer> UmlsToIndex_d = new Hashtable<String, Integer>();
-    Hashtable<Integer, String> IndexToUmls_d = new Hashtable<Integer, String>();
-    Hashtable<String, String> DisToUmls = new Hashtable<String, String>();
-    Hashtable<String,String> UmlsToDis = new Hashtable<String,String>();
+    Hashtable<Integer, String> IndexToUmls_s = new Hashtable<>();
+    Hashtable<String, Integer> UmlsToIndex_s = new Hashtable<>();
+    Hashtable<String, Integer> UmlsToIndex_d = new Hashtable<>();
+    Hashtable<Integer, String> IndexToUmls_d = new Hashtable<>();
+    Hashtable<String, String> DisToUmls = new Hashtable<>();
+    Hashtable<String,String> UmlsToDis = new Hashtable<>();
+
+ */
+
+    public Hashtable<String, Integer> DisToIndex = new Hashtable<>();
+    public Hashtable<Integer, String> IndexToDis = new Hashtable<>();
+    public Hashtable<String, Integer> SympToIndex = new Hashtable<>();
+    public Hashtable<Integer,String> IndexToSymp = new Hashtable<>();
+    public Hashtable<String, Integer> LabToIndex = new Hashtable<>();
+    public Hashtable<Integer,String> IndexToLab = new Hashtable<>();
+    public Hashtable<String, Integer> DrugToIndex = new Hashtable<>();
+    public Hashtable<Integer,String> IndexToDrug = new Hashtable<>();
 
     int ncols, nrows;
     float[][] wm, symptom_vector, disease_vector;
@@ -73,11 +85,15 @@ public class DiagnosisResult extends AppCompatActivity {
         handlePassedIntent();
         //loadDiseases("DiseaseList.csv");
         //findNumRowsCols("Dis_Sym_30.csv");
-        loadDiseases("DiseaseList_new.csv");
-        findNumRowsCols("DiseaseSymptomMatrix_quantitative.csv");
+        //loadDiseases("wmrec.csv");
+        for (String d : DisToIndex.keySet()){
+            SearchListItem t = new SearchListItem(0, d);
+            allDiseases.add(t);
+        }
+        findNumRowsCols("wmrec.csv");
         wm = new float[nrows][ncols];
         //wm = loadWeightMatrix("Dis_Sym_30.csv", 1, 1);
-        wm = loadWeightMatrix("DiseaseSymptomMatrix_quantitative.csv", 1, 1);
+        wm = loadWeightMatrix("wmrec.csv", 1, 1);
         symptom_vector = loadPatientSymptoms(patientSymptoms);
         //preliminary multiplication of the weight matrix to symptom vector
         disease_vector = matrixMultiply(wm, symptom_vector, nrows,ncols, ncols,1);
@@ -100,15 +116,15 @@ public class DiagnosisResult extends AppCompatActivity {
             p_height = passedIntent.getFloatExtra("height",-1);
             p_weight = passedIntent.getFloatExtra("weight",-1);
             patientSymptoms = passedIntent.getStringArrayListExtra("patient_symptoms");
-            SympToUmls = new Hashtable<> ((HashMap<String,String>) passedIntent.getSerializableExtra("stu"));
-            UmlsToSymp = new Hashtable<>((HashMap<String,String>) passedIntent.getSerializableExtra("uts"));
-            IndexToUmls_s = new Hashtable<>((HashMap<Integer, String>) passedIntent.getSerializableExtra("itus"));
-            UmlsToIndex_s = new Hashtable<>((HashMap<String, Integer>) passedIntent.getSerializableExtra("utis"));
 
-            DisToUmls = new Hashtable<> ((HashMap<String,String>) passedIntent.getSerializableExtra("dtu"));
-            UmlsToDis = new Hashtable<>((HashMap<String,String>) passedIntent.getSerializableExtra("utd"));
-            IndexToUmls_d = new Hashtable<>((HashMap<Integer, String>) passedIntent.getSerializableExtra("itud"));
-            UmlsToIndex_d = new Hashtable<>((HashMap<String, Integer>) passedIntent.getSerializableExtra("utid"));
+            DisToIndex = new Hashtable<> ((HashMap<String,Integer>) passedIntent.getSerializableExtra("DisToIndex"));
+            IndexToDis = new Hashtable<> ((HashMap<Integer,String>) passedIntent.getSerializableExtra("IndexToDis"));
+            SympToIndex = new Hashtable<> ((HashMap<String,Integer>) passedIntent.getSerializableExtra("SympToIndex"));
+            IndexToSymp = new Hashtable<> ((HashMap<Integer,String>) passedIntent.getSerializableExtra("IndexToSymp"));
+            LabToIndex = new Hashtable<> ((HashMap<String,Integer>) passedIntent.getSerializableExtra("LabToIndex"));
+            IndexToLab = new Hashtable<> ((HashMap<Integer,String>) passedIntent.getSerializableExtra("IndexToLab"));
+            DrugToIndex = new Hashtable<> ((HashMap<String,Integer>) passedIntent.getSerializableExtra("DrugToIndex"));
+            IndexToDrug = new Hashtable<> ((HashMap<Integer,String>) passedIntent.getSerializableExtra("IndexToDrug"));
 
         }else if(mode == 2){
             p_sex = (String) passedIntent.getSerializableExtra("sex");
@@ -117,15 +133,15 @@ public class DiagnosisResult extends AppCompatActivity {
             p_height = passedIntent.getFloatExtra("height",-1);
             p_weight = passedIntent.getFloatExtra("weight",-1);
             patientSymptoms = passedIntent.getStringArrayListExtra("patient_symptoms");
-            SympToUmls = new Hashtable<> ((HashMap<String,String>) passedIntent.getSerializableExtra("stu"));
-            UmlsToSymp = new Hashtable<>((HashMap<String,String>) passedIntent.getSerializableExtra("uts"));
-            IndexToUmls_s = new Hashtable<>((HashMap<Integer, String>) passedIntent.getSerializableExtra("itus"));
-            UmlsToIndex_s = new Hashtable<>((HashMap<String, Integer>) passedIntent.getSerializableExtra("utis"));
 
-            DisToUmls = new Hashtable<> ((HashMap<String,String>) passedIntent.getSerializableExtra("dtu"));
-            UmlsToDis = new Hashtable<>((HashMap<String,String>) passedIntent.getSerializableExtra("utd"));
-            IndexToUmls_d = new Hashtable<>((HashMap<Integer, String>) passedIntent.getSerializableExtra("itud"));
-            UmlsToIndex_d = new Hashtable<>((HashMap<String, Integer>) passedIntent.getSerializableExtra("utid"));
+            DisToIndex = new Hashtable<> ((HashMap<String,Integer>) passedIntent.getSerializableExtra("DisToIndex"));
+            IndexToDis = new Hashtable<> ((HashMap<Integer,String>) passedIntent.getSerializableExtra("IndexToDis"));
+            SympToIndex = new Hashtable<> ((HashMap<String,Integer>) passedIntent.getSerializableExtra("SympToIndex"));
+            IndexToSymp = new Hashtable<> ((HashMap<Integer,String>) passedIntent.getSerializableExtra("IndexToSymp"));
+            LabToIndex = new Hashtable<> ((HashMap<String,Integer>) passedIntent.getSerializableExtra("LabToIndex"));
+            IndexToLab = new Hashtable<> ((HashMap<Integer,String>) passedIntent.getSerializableExtra("IndexToLab"));
+            DrugToIndex = new Hashtable<> ((HashMap<String,Integer>) passedIntent.getSerializableExtra("DrugToIndex"));
+            IndexToDrug = new Hashtable<> ((HashMap<Integer,String>) passedIntent.getSerializableExtra("IndexToDrug"));
         }
 
     }
@@ -220,17 +236,16 @@ public class DiagnosisResult extends AppCompatActivity {
                     intent.putExtra("height", p_height);
                     intent.putExtra("weight", p_weight);
                     intent.putExtra("patient_symptoms", patientSymptoms);
-                    intent.putExtra("stu", SympToUmls);
-                    intent.putExtra("uts", UmlsToSymp);
-                    intent.putExtra("dtu", DisToUmls);
-                    intent.putExtra("utd", UmlsToDis);
-                    intent.putExtra("itud", IndexToUmls_d);
-                    intent.putExtra("itus", IndexToUmls_s);
-                    intent.putExtra("utid", UmlsToIndex_d);
-                    intent.putExtra("utis", UmlsToIndex_s);
-                    intent.putExtra("diagnosed_disease_index", UmlsToIndex_d.get(DisToUmls.get(diagnosedDisease)));
+                    intent.putExtra("DisToIndex", DisToIndex);
+                    intent.putExtra("SympToIndex", SympToIndex);
+                    intent.putExtra("LabToIndex", LabToIndex);
+                    intent.putExtra("DrugToIndex", DrugToIndex);
+                    intent.putExtra("IndexToDis", IndexToDis);
+                    intent.putExtra("IndexToSymp", IndexToSymp);
+                    intent.putExtra("IndexToLab", IndexToLab);
+                    intent.putExtra("IndexToDrug", IndexToDrug);
+                    intent.putExtra("diagnosed_disease_index", DisToIndex.get(diagnosedDisease));
                     intent.putExtra("likelihood_of_disease", ddProb);
-                    intent.putExtra("diagnosed_UMLS", DisToUmls.get(diagnosedDisease));
                     intent.putExtra("diagnosed_disease_name", diagnosedDisease);
                     intent.putExtra("patient", patient);
                     startActivity(intent);
@@ -285,7 +300,7 @@ public class DiagnosisResult extends AppCompatActivity {
     public DiseaseProb[] convertDiseaseVector(float[][] m, int size){
         DiseaseProb[] temp = new DiseaseProb[size];
         for(int i = 0; i < size; i++){
-            temp[i] = new DiseaseProb(IndexToUmls_d.get(i),UmlsToDis.get(IndexToUmls_d.get(i)), m[i][0]);
+            temp[i] = new DiseaseProb(IndexToDis.get(i), m[i][0]);
         }
         return temp;
     }
@@ -301,7 +316,7 @@ public class DiagnosisResult extends AppCompatActivity {
 
         for(int j =0; j < len; j++){
             float tprob = dp[j].getProb();
-            ndv[j] = new DiseaseProb(dp[j].getUmls(), dp[j].getDisease(), tprob/sum);
+            ndv[j] = new DiseaseProb(dp[j].getDisease(), tprob/sum);
         }
         return ndv;
     }
@@ -311,7 +326,7 @@ public class DiagnosisResult extends AppCompatActivity {
         float[][] ph = new float[ncols][1];
         int vector_index;
         for(int i = 0; i < ps.size(); i++){
-            vector_index = UmlsToIndex_s.get(SympToUmls.get(ps.get(i)));
+            vector_index = SympToIndex.get(ps.get(i));
             ph[vector_index][0] = 1f;
         }
         return ph;
@@ -328,7 +343,7 @@ public class DiagnosisResult extends AppCompatActivity {
             int index = 0;
             while((nl = reader.readLine()) != null){
                 temp = nl.split(",");
-                DisToUmls.put(temp[1], temp[0]);
+                // DisToUmls.put(temp[1], temp[0]);
                 index += 1;
                 SearchListItem t = new SearchListItem(0, temp[1]);
                 allDiseases.add(t);

@@ -33,8 +33,6 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
 
 
@@ -54,14 +52,6 @@ public class ConfirmationScreen extends AppCompatActivity {
     List<SearchListItem> allDiseases = new ArrayList<>();
     ArrayList<String> patientSymptoms;
 
-    Hashtable<String, String> SympToUmls= new Hashtable<String, String>();
-    Hashtable<String, String> UmlsToSymp= new Hashtable<String, String>();
-    Hashtable<Integer, String> IndexToUmls_s = new Hashtable<Integer, String>();
-    Hashtable<String, Integer> UmlsToIndex_s = new Hashtable<String, Integer>();
-    Hashtable<String, Integer> UmlsToIndex_d = new Hashtable<String, Integer>();
-    Hashtable<Integer, String> IndexToUmls_d = new Hashtable<Integer, String>();
-    Hashtable<String, String> DisToUmls = new Hashtable<String, String>();
-    Hashtable<String,String> UmlsToDis = new Hashtable<String,String>();
 
 
 
@@ -83,12 +73,12 @@ public class ConfirmationScreen extends AppCompatActivity {
 
                 CommunicationHandler ch = new CommunicationHandler();
 
-                ArrayList<Integer> tmp = new ArrayList<Integer>();
+                //ArrayList<Integer> tmp = new ArrayList<Integer>();
 
-                for(int i = 0; i < patientSymptoms.size(); i++){
-                    tmp.add(UmlsToIndex_s.get(SympToUmls.get(patientSymptoms.get(i))));
+                //for(int i = 0; i < patientSymptoms.size(); i++){
+                //    tmp.add(UmlsToIndex_s.get(SympToUmls.get(patientSymptoms.get(i))));
                     //new Integer(UmlsToIndex.get(SympToUmls.get(patientSymptoms.get(i))))
-                }
+                //}
 
 
                 //String toSend = ch.generateRawMessage(p_id, p_sex, p_age, p_height, p_weight, tmp, diagnosed_disease_index);
@@ -181,15 +171,6 @@ public class ConfirmationScreen extends AppCompatActivity {
         p_weight = passedIntent.getFloatExtra("weight",-1);
         patientSymptoms = passedIntent.getStringArrayListExtra("patient_symptoms");
 
-        SympToUmls = new Hashtable<> ((HashMap<String,String>) passedIntent.getSerializableExtra("stu"));
-        UmlsToSymp = new Hashtable<>((HashMap<String,String>) passedIntent.getSerializableExtra("uts"));
-        IndexToUmls_s = new Hashtable<>((HashMap<Integer, String>) passedIntent.getSerializableExtra("itus"));
-        UmlsToIndex_s = new Hashtable<>((HashMap<String, Integer>) passedIntent.getSerializableExtra("utis"));
-
-        DisToUmls = new Hashtable<> ((HashMap<String,String>) passedIntent.getSerializableExtra("dtu"));
-        UmlsToDis = new Hashtable<>((HashMap<String,String>) passedIntent.getSerializableExtra("utd"));
-        IndexToUmls_d = new Hashtable<>((HashMap<Integer, String>) passedIntent.getSerializableExtra("itud"));
-        UmlsToIndex_d = new Hashtable<>((HashMap<String, Integer>) passedIntent.getSerializableExtra("utid"));
 
         diagnosed_disease = passedIntent.getStringExtra("diagnosed_disease_name");
         diagnosed_disease_prob = passedIntent.getFloatExtra("likelihood_of_disease", -1f);

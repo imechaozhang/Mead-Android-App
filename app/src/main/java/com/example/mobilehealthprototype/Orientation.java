@@ -30,11 +30,16 @@ public class Orientation extends AppCompatActivity{
     private void handlePassedIntent() {
         Intent passedIntent = getIntent();
         //patient = (PatientInfo) passedIntent.getSerializableExtra("patient");
-        patient = passedIntent.getParcelableExtra("patient");
+        patient = (PatientInfo) passedIntent.getParcelableExtra("patient");
         System.out.println("=============testing parced patient birthyear");
         System.out.println(patient);
         System.out.println(patient.autoid);
         System.out.println(patient.birth_year);
+        System.out.println(patient.name);
+        System.out.println(patient.id);
+        System.out.println(patient.height);
+        System.out.println(patient.weight);
+        System.out.println(patient.gender);
         System.out.println("=============testing parced patient birthyear");
 
     }

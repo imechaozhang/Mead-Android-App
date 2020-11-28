@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity(tableName = "patient_table")
 public class PatientInfo implements Parcelable {
@@ -64,17 +66,25 @@ public class PatientInfo implements Parcelable {
         parcel.writeString(lab_test);
         parcel.writeString(diagnosis);
         parcel.writeString(prescription);
+        parcel.writeInt(birth_year);
+        parcel.writeFloat(height);
+        parcel.writeFloat(weight);
+        parcel.writeString(gender);
     }
 
     public PatientInfo(){}
 
     public PatientInfo(Parcel source) {
-        id = source.readString();
-        name = source.readString();
+        id = Objects.requireNonNull(source.readString());
+        name = Objects.requireNonNull(source.readString());
         symptoms = source.readString();
         lab_test = source.readString();
         diagnosis = source.readString();
         prescription = source.readString();
+        birth_year = source.readInt();
+        height = source.readFloat();
+        weight = source.readFloat();
+        gender = source.readString();
     }
     public static final Creator<PatientInfo> CREATOR = new Creator<PatientInfo>() {
         @Override

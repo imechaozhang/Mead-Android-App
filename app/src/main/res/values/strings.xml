@@ -18,7 +18,7 @@
     <string name="female_option">F</string>
     <string name="height_header">Put the patient\'s height in the field below (Meters)</string>
     <string name="weight_header">Put the patient\'s weight in the field below (Kilograms)</string>
-    <string name="age_field_header">Put the age of your patient below</string>
+    <string name="age_field_header">Put the birth year of your patient below</string>
     <string name="age_field_hint">Age</string>
     <string name="docpat_location">Are you with the patient right now?</string>
     <string name="initial_symptom_header">Put the symptoms of your patient below</string>

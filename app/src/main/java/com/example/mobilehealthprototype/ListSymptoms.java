@@ -176,12 +176,8 @@ public class ListSymptoms extends AppCompatActivity {
 
             for(int r = 0; r < nrows; r++){
                 nl = reader.readLine();
-                temp = nl.split(",");
+                temp = nl.split(",",-1);
                 for(int c = 0; c < ncols; c++){
-                    System.out.println("===========debugging========");
-                    System.out.println(temp.length);
-                    System.out.println(c);
-                    System.out.println("===========debugging========");
                     if (temp[c + 1].equals("")){
                         lab_matrix[r][c] = 0;
                     }
@@ -208,7 +204,7 @@ public class ListSymptoms extends AppCompatActivity {
 
             // first line for lab list
             nl = reader.readLine();
-            temp = nl.split(",");
+            temp = nl.split(",",-1);
             int ncols = temp.length-1;
             for(int idx=0; idx<ncols; idx++){
                 DrugToIndex.put(temp[idx+1], idx);
@@ -229,7 +225,7 @@ public class ListSymptoms extends AppCompatActivity {
 
             for(int r = 0; r < nrows; r++){
                 nl = reader.readLine();
-                temp = nl.split(",");
+                temp = nl.split(",",-1);
                 for(int c = 0; c < ncols; c++){
                     if (temp[c + 1].equals("")){
                         drug_matrix[r][c] = 0;

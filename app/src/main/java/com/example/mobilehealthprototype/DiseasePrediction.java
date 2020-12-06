@@ -17,7 +17,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
@@ -52,8 +51,8 @@ public class DiseasePrediction extends AppCompatActivity {
         setContentView(R.layout.activity_disease_prediction);
 
         handlePassedIntent();
-        loadPrediction("diseaseCorrelation.csv");
-        loadDrug("DrugRecommendation.csv");
+        loadPrediction("archived/diseaseCorrelation.csv");
+        loadDrug("archived/DrugRecommendation.csv");
 
         setUpInterface();
 

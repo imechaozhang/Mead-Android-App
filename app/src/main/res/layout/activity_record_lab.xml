@@ -6,38 +6,28 @@
     android:layout_height="match_parent"
     android:accessibilityHeading="true"
     android:orientation="vertical"
-    tools:context=".RecordDiseases">
+    tools:context=".RecordLabs">
 
     <Button
-        android:id="@+id/select_disease_button"
+        android:id="@+id/select_lab_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="18dp"
         android:background="@drawable/list_symptom_buttons"
-        android:text="Select Diagnosis"
+        android:text="Select Lab tests"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ListView
-        android:id="@+id/recordDiseaselist"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="21dp"
-        app:layout_constraintBottom_toTopOf="@+id/record_disease_next"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/select_disease_button"></ListView>
-
     <Button
-        android:id="@+id/record_disease_next"
+        android:id="@+id/record_lab_skip"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:background="@drawable/list_symptom_buttons"
-        android:text="Next"
+        android:text="Skip"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -105,16 +105,6 @@ public class PatientInfoActivity extends AppCompatActivity {
                 intent.putExtra("patient", patient);
                 startActivity(intent);
 
-                System.out.println("=============testing patient birthyear");
-                System.out.println(patient);
-                System.out.println(patient.autoid);
-                System.out.println(patient.birth_year);
-                System.out.println(patient.name);
-                System.out.println(patient.id);
-                System.out.println(patient.height);
-                System.out.println(patient.weight);
-                System.out.println(patient.gender);
-                System.out.println("=============testing patient birthyear");
                 // else{
                 //AlertDialog.Builder wn = buildWarning(R.string.warning_title, R.string.warning_message, R.string.close);
                 //wn.show();

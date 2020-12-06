@@ -309,7 +309,6 @@ public class AdaptiveDiagnosis extends AppCompatActivity {
                 intent.putExtra("dl", disease_list);
                 intent.putExtra("sl", symptom_list);
                 intent.putExtra("ncols", ncols);
-                intent.putExtra("nrows", nrows);
                 intent.putExtra("patient", patient);
                 startActivity(intent);
             }
@@ -338,6 +337,7 @@ public class AdaptiveDiagnosis extends AppCompatActivity {
             InputStreamReader is = new InputStreamReader(getAssets().open(fname));
             BufferedReader reader = new BufferedReader(is);
             nl = reader.readLine(); //skip the first line of the CSV
+            ncols = nl.split(",",-1).length - 1;
 
 
             for(int r = 0; r < nrows; r++){

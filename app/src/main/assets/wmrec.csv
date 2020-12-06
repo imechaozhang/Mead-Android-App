@@ -1,8 +1,8 @@
-﻿,Headache,Abdominal pain,Cold sweats,Fever,Sore throat,Pain in the limbs,Cough,Runny nose,Chest pain,Sweating,Tiredness,Unconsciousness,Weight gain,Stuffy nose,Shortness of breath,Chest tightness,Swollen glands on the neck,Nausea,Heartburn,Burning in the throat,Chills,Sleeplessness,Reduced appetite,weakness,Going black before the eyes,Sputum,Sneezing,Anxiety,Male,Female,Child,Adult,Elder
-Headache,0.9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-Coronary heart disease,0,0,0.539999924,0,0,0,0,0,0.72,0,0,0.4803202,0,0,0.192,0.9,0,0,0.108,0,0,0,0,0,0.9,0,0,0,0,0,0,0,0
-Flu,0.4153846,0,0,0.675,0.405,0.675,0.50625,0.9,0.18,0.9,0.675,0,0,0.9,0.9,0,0.5625,0,0,0.54,0.9,0,0.61363636,0,0,0.73125,0.675,0,0,0,0,0,0
-Cold,0.276923084,0,0,0.9,0.432,0.9,0.9,0.6857143,0,0,0.9,0,0,0.705882339,0,0,0.9,0,0,0.48,0,0,0,0.9,0,0.75,0.9,0,0,0,0,0,0
-Urinary tract infection,0,0.0928125,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-Hernia,0,0.091125,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-Depression,0,0,0,0,0,0,0,0,0,0,0.72,0,0.9,0,0,0,0,0,0,0,0,0.9,0.9,0,0,0,0,0.72,0,0,0,0,0
+﻿,Headache,Abdominal pain,Cold sweats,Fever,Sore throat,Pain in the limbs,Cough,Runny nose,Chest pain,Sweating,Tiredness,Unconsciousness,Weight gain,Stuffy nose,Shortness of breath,Chest tightness,Swollen glands on the neck,Nausea,Heartburn,Burning in the throat,Chills,Sleeplessness,Reduced appetite,weakness,Going black before the eyes,Sputum,Sneezing,Anxiety
+Headache,0.9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.18,0,0,0,0,0,0,0,0,0,0
+Coronary heart disease,0,0,0.539999924,0,0,0,0,0,0.72,0,0,0.4803202,0,0,0.192,0.9,0,0,0.108,0,0,0,0,0,0.9,0,0,0
+Flu,0.4153846,0,0,0.675,0.405,0.675,0.50625,0.9,0.18,0.9,0.675,0,0,0.9,0.9,0,0.5625,0,0,0.54,0.9,0,0.61363636,0,0,0.73125,0.675,0
+Cold,0.276923084,0,0,0.9,0.432,0.9,0.9,0.6857143,0,0,0.9,0,0,0.705882339,0,0,0.9,0,0,0.48,0,0,0,0.9,0,0.75,0.9,0
+Urinary tract infection,0,0.0928125,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Hernia,0,0.091125,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Depression,0,0,0,0,0,0,0,0,0,0,0.72,0,0.9,0,0,0,0,0,0,0,0,0.9,0.9,0,0,0,0,0.72

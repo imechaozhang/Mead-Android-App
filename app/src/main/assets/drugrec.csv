@@ -1,8 +1,8 @@
-﻿Disease,Drug1,Drug2,Drug3
-Headache,aspirin,ibuprofen ,paracetamol
-Coronary heart disease,bisoprolol,digoxin,enalapril
-Flu,Oseltamivir phosphate,Zanamivir,Peramivir
-Cold,Acetaminophen,ibuprofen ,dextromethorphan
-Urinary tract infection,amoxicillin,nitrofurantoin,trimethoprim
-Hernia,surgery,,
-Depression,Psychotherapy,sertraline,venlafaxine
+﻿Disease,aspirin,ibuprofen ,paracetamol,bisoprolol,digoxin,enalapril,Oseltamivir phosphate,Zanamivir,Peramivir,Acetaminophen,dextromethorphan,amoxicillin,nitrofurantoin,trimethoprim,surgery,Psychotherapy,sertraline,venlafaxine
+Headache,1,1,1,,,,,,,,,,,,,,,
+Coronary heart disease,,,,1,1,1,,,,,,,,,,,,
+Flu,,,,,,,1,1,1,,,,,,,,,
+Cold,,1,,,,,,,,1,1,,,,,,,
+Urinary tract infection,,,,,,,,,,,,1,1,1,,,,
+Hernia,,,,,,,,,,,,,,,1,,,
+Depression,,,,,,,,,,,,,,,,1,1,1

@@ -34,10 +34,12 @@ public class RecordLabs extends AppCompatActivity {
     List<SearchListItem> allLabs = new ArrayList<>();
     List<SearchListItem> allDrugs = new ArrayList<>();
     ArrayList<String> patientSymptoms = new ArrayList<>();
+    ArrayList<String> patientLabs = new ArrayList<>();
     String diagnosis;
     ListView currentDiseaseListView;
-    DiseaseAdapter adp;
+    LabAdapter adp;
     SearchableDialog sd;
+    ListView currentLabListView;
 
     public Hashtable<String, Integer> DisToIndex = new Hashtable<>();
     public Hashtable<Integer, String> IndexToDis = new Hashtable<>();
@@ -248,43 +250,37 @@ public class RecordLabs extends AppCompatActivity {
         //Setting up the search view to look up symptoms
         sd = new SearchableDialog(RecordLabs.this, allLabs,"Disease Search");
         sd.setOnItemSelected(new OnSearchItemSelected(){
-            public void onClick(int position, SearchListItem searchListItem){
+            public void onClick(int position, SearchListItem searchListItem) {
                 String lab = searchListItem.getTitle();
-                patient.lab_test = lab;
-                Intent intent = new Intent(RecordLabs.this, ConfirmationScreen.class);
-                intent.putExtra("hid", p_id);
-                intent.putExtra("sex", p_sex);
-                intent.putExtra("age", p_age);
-                intent.putExtra("height", p_height);
-                intent.putExtra("weight", p_weight);
-                intent.putExtra("patient_symptoms", patientSymptoms);
-                intent.putExtra("diagnosis", diagnosis);
-                intent.putExtra("DisToIndex", DisToIndex);
-                intent.putExtra("SympToIndex", SympToIndex);
-                intent.putExtra("LabToIndex", LabToIndex);
-                intent.putExtra("DrugToIndex", DrugToIndex);
-                intent.putExtra("IndexToDis", IndexToDis);
-                intent.putExtra("IndexToSymp", IndexToSymp);
-                intent.putExtra("IndexToLab", IndexToLab);
-                intent.putExtra("IndexToDrug", IndexToDrug);
-                intent.putExtra("patient", patient);
-                intent.putExtra("diagnosed_disease_index", DisToIndex.get(diagnosis));
-                intent.putExtra("likelihood_of_disease", 1);
-                intent.putExtra("diagnosed_disease_name", diagnosis);
-                startActivity(intent);
+                if (!patientLabs.contains(lab)) {
+                    patientLabs.add(searchListItem.getTitle());
+                    ((RecordSymptoms.SymptomAdapter) currentLabListView.getAdapter()).notifyDataSetChanged();
+                }
+
+                if (patientLabs.size() == 1) {
+                    patient.lab_test = lab;
+                }
+
+                patient.lab_test += ',' + lab;
             }
         });
 
         Button addlab = findViewById(R.id.select_lab_button);
-        CustomButton.changeButtonColor(this, addlab, R.color.colorPrimaryDark,3, R.color.colorPrimaryDarkAccent);
-        addlab.setOnClickListener(new View.OnClickListener(){
+        CustomButton.changeButtonColor(this, addlab, R.color.colorPrimaryDark, 3, R.color.colorPrimaryDarkAccent);
+        addlab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 sd.show();
             }
         });
 
+        //Sets up the ListView for the patient's current symptoms
+
+        currentLabListView = findViewById(R.id.recordlablist);
+        adp = new RecordLabs.LabAdapter(this, patientLabs);
+        currentLabListView.setAdapter(adp);
+
         Button skip = findViewById(R.id.record_lab_skip);
-        CustomButton.changeButtonColor(this, skip, R.color.colorPrimary,3, R.color.colorAccent);
+        CustomButton.changeButtonColor(this, skip, R.color.colorPrimary, 3, R.color.colorAccent);
 
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -314,11 +310,11 @@ public class RecordLabs extends AppCompatActivity {
         });
     }
 
-    public class DiseaseAdapter extends BaseAdapter implements ListAdapter {
+    public static class LabAdapter extends BaseAdapter implements ListAdapter {
         private ArrayList<String> list = new ArrayList<String>();
-        private Context context;
+        private final Context context;
 
-        public DiseaseAdapter(Context context, ArrayList<String> list) {
+        public LabAdapter(Context context, ArrayList<String> list) {
             this.list = list;
             this.context = context;
         }
@@ -353,7 +349,7 @@ public class RecordLabs extends AppCompatActivity {
             }
 
             //Handle TextView and display string from your list
-            TextView listItemText = (TextView)view.findViewById(R.id.list_item_symptom);
+            TextView listItemText = view.findViewById(R.id.list_item_symptom);
             listItemText.setText(list.get(position));
 
             //Handle buttons and add onClickListeners

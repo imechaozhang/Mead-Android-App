@@ -1,18 +1,16 @@
 package com.example.mobilehealthprototype;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.Manifest;
 import android.app.AlertDialog;
-import android.app.DownloadManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        askPermissions();
+        //askPermissions();
         setUpInterface();
     }
 
@@ -40,31 +38,25 @@ public class MainActivity extends AppCompatActivity {
 
     public void checkPermissions(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
-                diagnose_enable = true;
-            }else{
-                diagnose_enable = false;
-            }
+            diagnose_enable = checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED;
         }
     }
 
     public void setUpInterface(){
-        Button diagnose = (Button) findViewById(R.id.diagnosisButton);
+        Button diagnose = findViewById(R.id.diagnosisButton);
         diagnose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //checkPermissions();
-                diagnose_enable = true;
-                AlertDialog.Builder bd = buildWarning(R.string.permissions_warning_title,
-                                                    R.string.permissions_warning_message, R.string.button_close);
+                // diagnose_enable = true;
+                //AlertDialog.Builder bd = buildWarning(R.string.permissions_warning_title,
+                //                                   R.string.permissions_warning_message, R.string.button_close);
                 // if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
                 //    if (checkSelfPermission(Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
                 //        bd.show();
                 //    }
                 // }
-                if (diagnose_enable) {
-                    startActivity(new Intent(MainActivity.this, PatientInfoActivity.class));
-                }
+                startActivity(new Intent(MainActivity.this, PatientInfoActivity.class));
             }
         });
 

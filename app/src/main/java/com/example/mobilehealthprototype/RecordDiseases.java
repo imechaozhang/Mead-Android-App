@@ -31,6 +31,7 @@ public class RecordDiseases extends AppCompatActivity {
     //important properties for the GUI to load in
     List<SearchListItem> allSymptoms = new ArrayList<>();
     List<SearchListItem> allDiseases = new ArrayList<>();
+    ArrayList<String> diagnosisList = new ArrayList<>();
     ArrayList<String> patientSymptoms = new ArrayList<>();
     String diagnosis;
     ListView currentDiseaseListView;
@@ -242,8 +243,10 @@ public class RecordDiseases extends AppCompatActivity {
         //Setting up the search view to look up symptoms
         sd = new SearchableDialog(RecordDiseases.this, allDiseases,"Disease Search");
         sd.setOnItemSelected(new OnSearchItemSelected(){
-            public void onClick(int position, SearchListItem searchListItem){
+            public void onClick(int position, SearchListItem searchListItem) {
                 diagnosis = searchListItem.getTitle();
+                diagnosisList.clear();
+                diagnosisList.add(diagnosis);
                 patient.diagnosis = diagnosis;
                 ((DiseaseAdapter) currentDiseaseListView.getAdapter()).notifyDataSetChanged();
 
@@ -260,7 +263,7 @@ public class RecordDiseases extends AppCompatActivity {
 
         //Sets up the ListView for the patient's current symptoms
         currentDiseaseListView = findViewById(R.id.recordDiseaselist);
-        adp = new DiseaseAdapter(this, diagnosis);
+        adp = new DiseaseAdapter(this, diagnosisList);
         currentDiseaseListView.setAdapter(adp);
 
         Button skip = findViewById(R.id.record_disease_next);
@@ -295,13 +298,12 @@ public class RecordDiseases extends AppCompatActivity {
         });
     }
 
-    public class DiseaseAdapter extends BaseAdapter implements ListAdapter {
+    public static class DiseaseAdapter extends BaseAdapter implements ListAdapter {
         private ArrayList<String> list = new ArrayList<String>();
-        private Context context;
+        private final Context context;
 
-        public DiseaseAdapter(Context context, String diag) {
-            this.list = new ArrayList<String>();
-            this.list.add(diag);
+        public DiseaseAdapter(Context context, ArrayList<String> list) {
+            this.list = list;
             this.context = context;
         }
 
@@ -335,7 +337,7 @@ public class RecordDiseases extends AppCompatActivity {
             }
 
             //Handle TextView and display string from your list
-            TextView listItemText = (TextView)view.findViewById(R.id.list_item_symptom);
+            TextView listItemText = view.findViewById(R.id.list_item_symptom);
             listItemText.setText(list.get(position));
 
             //Handle buttons and add onClickListeners

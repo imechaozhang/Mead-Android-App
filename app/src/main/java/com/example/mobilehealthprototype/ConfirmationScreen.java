@@ -9,11 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.ajithvgiri.searchdialog.SearchListItem;
 import com.squareup.okhttp.MediaType;
@@ -66,7 +62,7 @@ public class ConfirmationScreen extends AppCompatActivity {
         text.setText(summary);
         PatientViewModel patientViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(PatientViewModel.class);
 
-        Button confirmation_button = (Button) findViewById(R.id.final_confirmation);
+        Button confirmation_button = findViewById(R.id.final_confirmation);
         confirmation_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -154,9 +150,11 @@ public class ConfirmationScreen extends AppCompatActivity {
 
         String fp = "Patient id:" + spid + "\n" + "Patient age:" + spage + "\n";
         String sp = fp + "Patient Symptoms::" + "\n";
-        for(int i = 0; i < patientSymptoms.size(); i++){
+        for (int i = 0; i < patientSymptoms.size(); i++) {
             sp = sp + patientSymptoms.get(i) + "\n";
         }
+
+        sp += "Patient Labs::" + "\n" + patient.lab_test;
         String tp = sp + "Doctor Diagnosis::" + "\n" + diagnosed_disease + "\n" + "with probability: " + sddprob;
         return tp;
     }

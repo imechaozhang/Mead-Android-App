@@ -43,11 +43,25 @@
         android:background="@drawable/main_screen_buttons"
         android:text="Revisiting patient"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/feedback"
         app:layout_constraintEnd_toEndOf="@id/diagnosisButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@id/diagnosisButton"
         app:layout_constraintTop_toBottomOf="@+id/diagnosisButton" />
+
+    <Button
+        android:id="@+id/feedback"
+        android:layout_width="300dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/main_screen_buttons"
+        android:text="Revisiting patient"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/diagnosisButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/diagnosisButton"
+        app:layout_constraintTop_toBottomOf="@+id/queryButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

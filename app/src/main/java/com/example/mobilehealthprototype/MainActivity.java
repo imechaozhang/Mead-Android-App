@@ -65,14 +65,22 @@ public class MainActivity extends AppCompatActivity {
         if(!query_enabled){
             query_pinfo.setEnabled(query_enabled);
             CustomButton.changeButtonColor(this, query_pinfo, R.color.disabled_gray, 3, R.color.disabled_gray_accent);
-        }else{
-            query_pinfo.setOnClickListener(new View.OnClickListener(){
-                public void onClick(View view){
+        } else {
+            query_pinfo.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
                     Intent i = new Intent(MainActivity.this, PatientQuery.class);
                     startActivity(i);
                 }
             });
         }
+
+        Button feedback = findViewById(R.id.feedback);
+        feedback.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, Feedback.class);
+                startActivity(i);
+            }
+        });
 
  /*        //TODO Actually configure this "OUTBREAK" button & activities
         Button outbreak = findViewById(R.id.outbreakButton);

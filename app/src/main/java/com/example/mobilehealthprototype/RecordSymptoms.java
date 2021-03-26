@@ -23,7 +23,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -36,6 +35,7 @@ public class RecordSymptoms extends AppCompatActivity {
     ListView currentSymptomListView;
     SymptomAdapter adp;
     SearchableDialog sd, sd2;
+    String newSmp;
     //List<String> sympOptions = new ArrayList<>(Arrays.asList("Light&Short","Light&long","Severe&Short","Severe&Long"));
 
     public Hashtable<String, Integer> DisToIndex = new Hashtable<>();
@@ -237,24 +237,23 @@ public class RecordSymptoms extends AppCompatActivity {
         //Setting up the search view to look up symptoms
         sd = new SearchableDialog(RecordSymptoms.this, allSymptoms,"Symptom Search");
 
-        SearchListItem t = new SearchListItem(0, "Light&Short");
+        SearchListItem t = new SearchListItem(0, "Mild & short-term");
         sympOptions.add(t);
-        t = new SearchListItem(1, "Light&Long");
+        t = new SearchListItem(1, "Mild & long-term");
         sympOptions.add(t);
-        t = new SearchListItem(2, "Severe&Short");
+        t = new SearchListItem(2, "Severe & short-term");
         sympOptions.add(t);
-        t = new SearchListItem(3, "Severe&Long");
+        t = new SearchListItem(3, "Severe & long-term");
         sympOptions.add(t);
-        sd2 = new SearchableDialog(RecordSymptoms.this, sympOptions, "Details");
+        sd2 = new SearchableDialog(RecordSymptoms.this, sympOptions, "Severity and duration");
 
         sd.setOnItemSelected(new OnSearchItemSelected(){
-            public void onClick(int position, SearchListItem searchListItem){
-                String newSmp = searchListItem.getTitle();
-                if(!patientSymptoms.contains(newSmp)){
+            public void onClick(int position, SearchListItem searchListItem) {
+                newSmp = searchListItem.getTitle();
+                sd2.show();
+                if (!patientSymptoms.contains(newSmp)) {
                     patientSymptoms.add(searchListItem.getTitle());
                     ((SymptomAdapter) currentSymptomListView.getAdapter()).notifyDataSetChanged();
-
-                    sd2.show();
                 }
             }
         });
@@ -262,7 +261,7 @@ public class RecordSymptoms extends AppCompatActivity {
         sd2.setOnItemSelected(new OnSearchItemSelected(){
             public void onClick(int position, SearchListItem searchListItem){
                 String newDetail = searchListItem.getTitle();
-                patientSympDetail.add(newDetail);
+                newSmp += "(" + newDetail + ")";
 
             }
         });
@@ -309,7 +308,7 @@ public class RecordSymptoms extends AppCompatActivity {
 
     public static class SymptomAdapter extends BaseAdapter implements ListAdapter {
         private ArrayList<String> list = new ArrayList<String>();
-        private Context context;
+        private final Context context;
 
         public SymptomAdapter(Context context, ArrayList<String> list) {
             this.list = list;
@@ -346,7 +345,7 @@ public class RecordSymptoms extends AppCompatActivity {
             }
 
             //Handle TextView and display string from your list
-            TextView listItemText = (TextView)view.findViewById(R.id.list_item_symptom);
+            TextView listItemText = view.findViewById(R.id.list_item_symptom);
             listItemText.setText(list.get(position));
 
             //Handle buttons and add onClickListeners

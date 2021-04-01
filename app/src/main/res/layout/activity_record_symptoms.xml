@@ -22,6 +22,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/symptom_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="left"
+        android:inputType="text"
+        android:singleLine="true"
+        app:layout_constraintBottom_toTopOf="@+id/recordsymptomlist"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/symp_type_header" />
+
+    <Button
+        android:id="@+id/symptom_input_add"
+        android:layout_width="88dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="add"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/recordsymptomlist"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/symptom_input"
+        app:layout_constraintTop_toBottomOf="@+id/symp_type_header" />
+
+    <TextView
+        android:id="@+id/symp_type_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="left"
+        android:text="or type in the symptom"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/symptom_input_add"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_symptom_record" />
+
     <ListView
         android:id="@+id/recordsymptomlist"
         android:layout_width="0dp"
@@ -30,7 +70,7 @@
         app:layout_constraintBottom_toTopOf="@+id/record_diagnose_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_symptom_record"></ListView>
+        app:layout_constraintTop_toBottomOf="@+id/symptom_input"></ListView>
 
     <Button
         android:id="@+id/record_diagnose_button"

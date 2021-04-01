@@ -233,9 +233,43 @@ public class RecordSymptoms extends AppCompatActivity {
         }
     }
 
-    public void setUpInterface(){
+
+    public void warnError(int input_id, int header_id) {
+        TextView header = findViewById(header_id);
+        String orig = header.getText().toString();
+        String mod_orig = (orig.contains("*")) ? orig : orig + "*";
+        header.setText(mod_orig);
+        header.setTextColor(getResources().getColor(R.color.errorColor));
+//        if(input_id > 0){
+//            EditText input = findViewById(input_id);
+//            input.setBackgroundColor(getResources().getColor(R.color.transparentRed));
+//        }
+    }
+
+    public void removeError(int input_id, int header_id) {
+        TextView header = findViewById(header_id);
+        String orig = header.getText().toString();
+        String mod_orig = (orig.contains("*")) ? orig.substring(0, orig.length() - 1) : orig;
+        header.setText(mod_orig);
+        header.setTextColor(getResources().getColor(R.color.black));
+    }
+
+    public String checkValue(int id1, int id2, boolean required) {
+        String parsed = ((TextView) findViewById(id1)).getText().toString();
+        if (parsed == null || parsed.trim().equals("")) {
+            if (required) {
+                warnError(id1, id2);
+            }
+            return "-1";
+        } else {
+            removeError(id1, id2);
+        }
+        return parsed;
+    }
+
+    public void setUpInterface() {
         //Setting up the search view to look up symptoms
-        sd = new SearchableDialog(RecordSymptoms.this, allSymptoms,"Symptom Search");
+        sd = new SearchableDialog(RecordSymptoms.this, allSymptoms, "Symptom Search");
 
         SearchListItem t = new SearchListItem(0, "Mild & short-term");
         sympOptions.add(t);
@@ -279,8 +313,20 @@ public class RecordSymptoms extends AppCompatActivity {
         adp = new SymptomAdapter(this, patientSymptoms);
         currentSymptomListView.setAdapter(adp);
 
+        String symp_type = checkValue(R.id.symptom_input, R.id.symp_type_header, true);
+        Button symp_type_add = findViewById(R.id.symptom_input_add);
+        symp_type_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                patientSymptoms.add(symp_type);
+                ((SymptomAdapter) currentSymptomListView.getAdapter()).notifyDataSetChanged();
+                ((TextView) findViewById(R.id.symptom_input)).clearComposingText();
+            }
+        });
+
         Button diagnose = findViewById(R.id.record_diagnose_button);
-        CustomButton.changeButtonColor(this, diagnose, R.color.colorPrimary,3, R.color.colorAccent);
+        CustomButton.changeButtonColor(this, diagnose, R.color.colorPrimary, 3, R.color.colorAccent);
 
         diagnose.setOnClickListener(new View.OnClickListener() {
             @Override

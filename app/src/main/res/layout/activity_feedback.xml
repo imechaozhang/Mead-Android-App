@@ -13,7 +13,7 @@
         android:ems="10"
         android:gravity="center_horizontal"
         android:inputType="text"
-        android:singleLine="true"
+        android:singleLine="false"
         app:layout_constraintBottom_toTopOf="@+id/submit_feedback_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -22,7 +22,6 @@ import java.net.URLEncoder;
 
 public class Feedback extends AppCompatActivity {
     private static final MediaType FORM_DATA_TYPE = MediaType.parse("application/x-www-form-urlencoded; charset=utf-8");
-    String feedbackText;
 
     public void warnError(int input_id, int header_id) {
         TextView header = findViewById(header_id);

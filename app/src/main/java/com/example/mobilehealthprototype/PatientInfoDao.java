@@ -10,7 +10,7 @@ import java.util.List;
 
 @Dao
 public interface PatientInfoDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(PatientInfo patientInfo);
 
     @Query("SELECT * from patient_table ORDER BY ID ASC")

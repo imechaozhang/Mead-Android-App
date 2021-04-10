@@ -15,6 +15,7 @@
         <activity android:name=".InformationSent"></activity>
         <activity android:name=".DiseasePrediction" />
         <activity android:name=".PatientQuery" />
+        <activity android:name=".Feedback" />
         <activity android:name=".ConfirmationScreen" />
         <activity android:name=".testingIntent" />
         <activity android:name=".DiagnosisResult" />

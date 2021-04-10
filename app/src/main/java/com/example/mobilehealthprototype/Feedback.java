@@ -61,35 +61,20 @@ public class Feedback extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
 
-        String summary = checkValue(R.id.feedback_input, R.id.feedback_header, true);
-        Button confirmation_button = findViewById(R.id.final_confirmation);
+
+        Button confirmation_button = findViewById(R.id.submit_feedback_button);
         confirmation_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                //CommunicationHandler ch = new CommunicationHandler();
-
-                //ArrayList<Integer> tmp = new ArrayList<Integer>();
-
-                //for(int i = 0; i < patientSymptoms.size(); i++){
-                //    tmp.add(UmlsToIndex_s.get(SympToUmls.get(patientSymptoms.get(i))));
-                //new Integer(UmlsToIndex.get(SympToUmls.get(patientSymptoms.get(i))))
-                //}
-
-
-                //String toSend = ch.generateRawMessage(p_id, p_sex, p_age, p_height, p_weight, tmp, diagnosed_disease_index);
-                // sendMessage deactivated
-                // sendMessage(getString(R.string.server_number),toSend); //Check if this is working later
-
-
+                String summary = checkValue(R.id.feedback_input, R.id.feedback_header, true);
+                System.out.println("===========");
+                System.out.println("summary\n");
+                System.out.println(summary);
+                System.out.println("===========");
                 //send google form
                 PostDataTask postDataTask = new PostDataTask();
-
-                //execute asynctask
                 postDataTask.execute(summary);
-
-                //saveFile(toSend);
-                //readFile();
 
 
                 Intent intent = new Intent(Feedback.this, MainActivity.class);
@@ -112,8 +97,8 @@ public class Feedback extends AppCompatActivity {
             try {
                 //all values must be URL encoded to make sure that special characters like & | ",etc.
                 //do not cause problems
-                postBody = record + "=" + URLEncoder.encode(msg, "UTF-8") +
-                        "&" + feedback + "=" + URLEncoder.encode("empty", "UTF-8");
+                postBody = record + "=" + URLEncoder.encode("empty", "UTF-8") +
+                        "&" + feedback + "=" + URLEncoder.encode(msg, "UTF-8");
             } catch (UnsupportedEncodingException ex) {
                 result = false;
             }
@@ -131,12 +116,6 @@ public class Feedback extends AppCompatActivity {
             } catch (IOException exception) {
                 result = false;
             }
-            System.out.println("===========");
-            System.out.println("sending result");
-            System.out.println(result);
-            System.out.println(msg);
-            System.out.println(postBody);
-            System.out.println("===========");
 
 
             return result;

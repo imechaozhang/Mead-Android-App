@@ -286,7 +286,7 @@ public class RecordSymptoms extends AppCompatActivity {
                 newSmp = searchListItem.getTitle();
                 sd2.show();
                 if (!patientSymptoms.contains(newSmp)) {
-                    patientSymptoms.add(searchListItem.getTitle());
+                    patientSymptoms.add(newSmp);
                     ((SymptomAdapter) currentSymptomListView.getAdapter()).notifyDataSetChanged();
                 }
             }
@@ -318,9 +318,12 @@ public class RecordSymptoms extends AppCompatActivity {
         symp_type_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                patientSymptoms.add(symp_type);
-                ((SymptomAdapter) currentSymptomListView.getAdapter()).notifyDataSetChanged();
+                newSmp = checkValue(R.id.symptom_input, R.id.symp_type_header, true);
+                sd2.show();
+                if (!patientSymptoms.contains(newSmp)) {
+                    patientSymptoms.add(newSmp);
+                    ((SymptomAdapter) currentSymptomListView.getAdapter()).notifyDataSetChanged();
+                }
                 ((TextView) findViewById(R.id.symptom_input)).clearComposingText();
             }
         });
